@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network>
+
+<server_ip>127.0.0.1</server_ip>
+<server_port>11101</server_port>
+<server_max_connection>100</server_max_connection>
+
+</network>
