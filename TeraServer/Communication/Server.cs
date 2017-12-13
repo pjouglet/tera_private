@@ -18,7 +18,8 @@ namespace TeraServer.Communication
             {
                 Console.WriteLine("Starting Server...");
                 this.TcpServer = new TCPServer("*", Config.getServerPort(), Config.getServerMaxConnection());
-                //todo: send all thread
+
+                Connection.SendAllThread.Start();
                 
                 Console.WriteLine("Loading OpCodes...");
                 OpCodes.Init();

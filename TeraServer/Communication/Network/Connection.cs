@@ -29,6 +29,26 @@ namespace TeraServer.Communication.Network
         private object SendLock = new object();
         private Account _account;
         
+        public static Thread SendAllThread = new Thread(SendAll);
+        protected static void SendAll()
+        {
+            while (true)
+            {
+                for (int i = 0; i < Connections.Count; i++)
+                {
+                    try
+                    {
+                        if (!Connections[i].Send())
+                            Connections.RemoveAt(i--);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("SendAll Error : ",ex.Message);
+                    }
+                }
+                Thread.Sleep(10);
+            }
+        }
         public Account Account
         {
             get { return _account; }
