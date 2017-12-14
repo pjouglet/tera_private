@@ -10,6 +10,7 @@ namespace TeraServer.Data.Structures
         public double posY;
         public double posZ;
         public int heading;
+        public int race;
         public int gender;
         public int classId;
         public int xp;
@@ -20,8 +21,8 @@ namespace TeraServer.Data.Structures
         public byte[] details1;
         public byte[] details2;
         public byte[] details3;
-        public long lastOnline;
-        public long creationTime;
+        public int lastOnline;
+        public int creationTime;
         public int worldMapGuardId;
         public int worldMapWorldId;
         public int worldMapSectionId;

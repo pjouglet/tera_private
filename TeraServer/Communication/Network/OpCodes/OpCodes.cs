@@ -45,6 +45,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_UPDATE_CONTENTS_ON_OFF), unchecked ((short)0x9B6B));
             ServerTypes.Add(typeof(S_SEND_VIP_SYSTEM_INFO), unchecked ((short)0xCA0C));
             ServerTypes.Add(typeof(S_CHECK_USERNAME), unchecked ((short)0xA6A1));
+            ServerTypes.Add(typeof(S_CREATE_USER), unchecked ((short)0x5DE2));
             #endregion
         }
     }

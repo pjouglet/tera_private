@@ -72,6 +72,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_CAN_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CONFIRM_INVITE_CODE_BUTTON.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_GET_USER_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOADING_SCREEN_CONTROL_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_CLIENT_ACCOUNT_SETTING.cs" />

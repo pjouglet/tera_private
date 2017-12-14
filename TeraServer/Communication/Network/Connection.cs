@@ -43,7 +43,7 @@ namespace TeraServer.Communication.Network
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("SendAll Error : ",ex.Message);
+                        Console.WriteLine("SendAll Error : " + ex.Message);
                     }
                 }
                 Thread.Sleep(10);
@@ -85,7 +85,7 @@ namespace TeraServer.Communication.Network
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error when trying to send packet : ", ex.Message);
+                        Console.WriteLine("Error when trying to send packet : "+ ex.Message);
                     }
                 }
                 Thread.Sleep(10);
