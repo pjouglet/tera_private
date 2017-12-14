@@ -23,6 +23,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked((short) 0xB16B), typeof(C_CAN_CREATE_USER));
             ClientTypes.Add(unchecked((short) 0x81A9), typeof(C_STR_EVALUATE_LIST));
             ClientTypes.Add(unchecked ((short)0xAEF3), typeof(C_WATCHED_MOVIES));
+            ClientTypes.Add(unchecked ((short)0xF5AB), typeof(C_REQUEST_VIP_SYSTEM_INFO));
             
             #endregion
 
@@ -37,6 +38,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_LOAD_CLIENT_ACCOUNT_SETTING), unchecked ((short)0xFDA7));
             ServerTypes.Add(typeof(S_CONFIRM_INVITE_CODE_BUTTON), unchecked ((short)0x7A60));
             ServerTypes.Add(typeof(S_UPDATE_CONTENTS_ON_OFF), unchecked ((short)0x9B6B));
+            ServerTypes.Add(typeof(S_SEND_VIP_SYSTEM_INFO), unchecked ((short)0xCA0C));
             #endregion
         }
     }

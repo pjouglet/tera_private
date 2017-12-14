@@ -48,6 +48,8 @@ namespace TeraServer.Data.DAO
                 account.Ticket = reader.GetValue(reader.GetOrdinal("password")).ToString();
                 account.Email = reader.GetValue(reader.GetOrdinal("email")).ToString();
                 account.IP = reader.GetValue(reader.GetOrdinal("ip")).ToString();
+                account.vipLevel = (int)reader.GetValue(reader.GetOrdinal("vip_tier"));
+                account.vipCredits = (int)reader.GetValue(reader.GetOrdinal("vip_credits"));
                 account.Players = DAOManager.PlayerDao.LoadAccountPlayers(account.AccountID);
             }
             reader.Close();
