@@ -19,16 +19,15 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         
         public override void Write(BinaryWriter writer)
         {
-            bool exist = DAOManager.PlayerDao.UsernameValid(this.username);
             WriteInt16(writer, 1);
-            WriteInt16(writer, 12);
-            WriteInt16(writer, 10);
-            WriteInt16(writer, 0);
-            WriteInt32(writer, 12);
+            WriteInt16(writer, 8);
+            WriteInt16(writer, 8);
+            WriteInt16(writer, 1);
 
             short name_pos = (short)writer.BaseStream.Position;
             WriteInt16(writer, 0);
             WriteInt32(writer, this.type);
+            WriteInt32(writer, 0);
 
             writer.Seek(name_pos, SeekOrigin.Begin);
             WriteInt16(writer, (short) writer.BaseStream.Length);

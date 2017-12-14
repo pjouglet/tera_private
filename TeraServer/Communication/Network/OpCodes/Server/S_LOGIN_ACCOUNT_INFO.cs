@@ -8,7 +8,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         {
             WriteInt16(writer, 14);
             WriteDouble(writer, 3656625);
-            WriteString(writer, "TERA-PROJECT");
+            WriteString(writer, "PlanetSL_4012");
             
         }
     }

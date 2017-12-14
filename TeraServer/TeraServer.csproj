@@ -57,7 +57,9 @@
     <Compile Include="Communication\Network\OpCodes\AClientPacket.cs" />
     <Compile Include="Communication\Network\OpCodes\AServerPacket.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CAN_CREATE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHECK_VERSION.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_GET_USER_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_HARDWARE_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOGIN_ARBITER.cs" />
@@ -68,11 +70,14 @@
     <Compile Include="Communication\Network\OpCodes\OpCodes.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_PACKAGE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CAN_CREATE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CONFIRM_INVITE_CODE_BUTTON.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_GET_USER_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_LOADING_SCREEN_CONTROL_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_CLIENT_ACCOUNT_SETTING.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOGIN_ACCOUNT_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOGIN_ARBITER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_REMAIN_PLAY_TIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SEND_VIP_SYSTEM_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_CONTENTS_ON_OFF.cs" />

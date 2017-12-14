@@ -13,6 +13,10 @@ namespace TeraServer.Communication.Logic
             Account account = DAOManager.AccountDao.LoadAccount(accountName, ticket);
             if (account != null)
                 connection.Account = account;
+            S_LOADING_SCREEN_CONTROL_INFO sLoadingScreenControlInfo = new S_LOADING_SCREEN_CONTROL_INFO();
+            sLoadingScreenControlInfo.Send(connection);
+            S_REMAIN_PLAY_TIME sRemainPlayTime = new S_REMAIN_PLAY_TIME();
+            sRemainPlayTime.Send(connection);
             S_LOGIN_ARBITER s_login_arbiter = new S_LOGIN_ARBITER(language, ((account != null) ? true: false));
             s_login_arbiter.Send(connection);
             S_LOGIN_ACCOUNT_INFO s_login_account_info = new S_LOGIN_ACCOUNT_INFO();

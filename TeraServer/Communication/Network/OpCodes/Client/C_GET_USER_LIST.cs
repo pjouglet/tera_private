@@ -19,16 +19,16 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             sAccountPackageList.Send(this.Connection);
             S_CONFIRM_INVITE_CODE_BUTTON sConfirmInviteCodeButton = new S_CONFIRM_INVITE_CODE_BUTTON();
             sConfirmInviteCodeButton.Send(this.Connection);
-            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff = new S_UPDATE_CONTENTS_ON_OFF(2);
-            sUpdateContentsOnOff.Send(this.Connection);
-            sUpdateContentsOnOff = new S_UPDATE_CONTENTS_ON_OFF(3);
-            sUpdateContentsOnOff.Send(this.Connection);
-            sUpdateContentsOnOff = new S_UPDATE_CONTENTS_ON_OFF(4);
-            sUpdateContentsOnOff.Send(this.Connection);
-            sUpdateContentsOnOff = new S_UPDATE_CONTENTS_ON_OFF(8);
-            sUpdateContentsOnOff.Send(this.Connection);
-            sUpdateContentsOnOff = new S_UPDATE_CONTENTS_ON_OFF(9);
-            sUpdateContentsOnOff.Send(this.Connection);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff1 = new S_UPDATE_CONTENTS_ON_OFF(2);
+            sUpdateContentsOnOff1.Send(this.Connection);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff2 = new S_UPDATE_CONTENTS_ON_OFF(3);
+            sUpdateContentsOnOff2.Send(this.Connection);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff3 = new S_UPDATE_CONTENTS_ON_OFF(4);
+            sUpdateContentsOnOff3.Send(this.Connection);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff4 = new S_UPDATE_CONTENTS_ON_OFF(8);
+            sUpdateContentsOnOff4.Send(this.Connection);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff5 = new S_UPDATE_CONTENTS_ON_OFF(9);
+            sUpdateContentsOnOff5.Send(this.Connection);
         }
     }
 }

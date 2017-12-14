@@ -43,7 +43,7 @@ namespace TeraServer.Data.DAO
             {
                 reader.Close();
                 SQL =
-                    "UPDATE `hardwareinfo` SET `os` = ?os, `cpu` = ?cpu, `gpu` = ?gpu, `memory` WHERE accountId = ?id";
+                    "UPDATE `hardwareinfo` SET `os` = ?os, `cpu` = ?cpu, `gpu` = ?gpu, `memory` = ?memory WHERE accountId = ?id";
                 command = new MySqlCommand(SQL, this._mySqlConnection);
                 command.Parameters.AddWithValue("?os", os);
                 command.Parameters.AddWithValue("?cpu", cpu);

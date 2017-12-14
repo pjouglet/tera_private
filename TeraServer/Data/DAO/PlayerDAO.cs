@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using MySql.Data.MySqlClient;
 using TeraServer.Data.Structures;
@@ -85,7 +86,12 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?name", username);
             MySqlDataReader reader = command.ExecuteReader();
 
-            return reader.HasRows;
+            if (reader.HasRows)
+            {
+                reader.Close();
+                return true;
+            }
+            return false;
         }
         public int SaveNewPlayer(Player player)
         {
