@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using TeraServer.Data.Structures;
 
@@ -29,6 +30,58 @@ namespace TeraServer.Data.DAO
             }
             reader.Close();
             return count;
+        }
+
+        public void SaveHarwareInfo(string os, string cpu, string gpu, int memory, Account account)
+        {
+            string SQL = "SELECT * FROM `hardwareinfo` WHERE `accountId` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", account.AccountID);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Close();
+                SQL =
+                    "UPDATE `hardwareinfo` SET `os` = ?os, `cpu` = ?cpu, `gpu` = ?gpu, `memory` WHERE accountId = ?id";
+                command = new MySqlCommand(SQL, this._mySqlConnection);
+                command.Parameters.AddWithValue("?os", os);
+                command.Parameters.AddWithValue("?cpu", cpu);
+                command.Parameters.AddWithValue("?gpu", gpu);
+                command.Parameters.AddWithValue("?memory", memory);
+                command.Parameters.AddWithValue("?id", account.AccountID);
+                
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error when trying to save hardware info ", e.Message);
+                }
+            }
+            else
+            {
+                reader.Close();
+                SQL =
+                    "INSERT INTO `hardwareinfo`(`accountId`, `os`, `cpu`, `gpu`, `memory`) VALUES(?id, ?os, ?cpu, ?gpu, ?memory)";
+                command = new MySqlCommand(SQL, this._mySqlConnection);
+                command.Parameters.AddWithValue("?id", account.AccountID);
+                command.Parameters.AddWithValue("?os", os);
+                command.Parameters.AddWithValue("?cpu", cpu);
+                command.Parameters.AddWithValue("?gpu", gpu);
+                command.Parameters.AddWithValue("?memory", memory);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine("Error when trying to save hardware info "+ e);
+                }
+            }
+            
         }
 
         public Account LoadAccount(string login, string ticket)

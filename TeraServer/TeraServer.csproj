@@ -62,6 +62,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_HARDWARE_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOGIN_ARBITER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_VIP_SYSTEM_INFO.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_SET_VISIBLE_RANGE.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_WATCHED_MOVIES.cs" />
     <Compile Include="Communication\Network\OpCodes\OpCodes.cs" />
