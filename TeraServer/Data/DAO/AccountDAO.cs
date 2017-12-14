@@ -53,6 +53,23 @@ namespace TeraServer.Data.DAO
                 account.Players = DAOManager.PlayerDao.LoadAccountPlayers(account.AccountID);
             }
             reader.Close();
+
+            if (account.AccountName != String.Empty)
+            {
+                SQL = "SELECT * FROM `accountspackages` WHERe `accountId` = ?id";
+                mySqlCommand = new MySqlCommand(SQL, this._mySqlConnection);
+                mySqlCommand.Parameters.AddWithValue("?id", account.AccountID);
+                reader = mySqlCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        account.accountPackages.Add((int) reader.GetValue(reader.GetOrdinal("packageId")));
+                    }
+                }
+                reader.Close();
+            }
+            
             return (account.AccountName == string.Empty) ? null : account;
         }
     }

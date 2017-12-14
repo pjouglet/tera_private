@@ -15,7 +15,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             s_get_user_list.Send(this.Connection);
             S_LOAD_CLIENT_ACCOUNT_SETTING sLoadClientAccountSetting = new S_LOAD_CLIENT_ACCOUNT_SETTING();
             sLoadClientAccountSetting.Send(this.Connection);
-            S_ACCOUNT_PACKAGE_LIST sAccountPackageList = new S_ACCOUNT_PACKAGE_LIST();
+            S_ACCOUNT_PACKAGE_LIST sAccountPackageList = new S_ACCOUNT_PACKAGE_LIST(this.Connection.Account);
             sAccountPackageList.Send(this.Connection);
             S_CONFIRM_INVITE_CODE_BUTTON sConfirmInviteCodeButton = new S_CONFIRM_INVITE_CODE_BUTTON();
             sConfirmInviteCodeButton.Send(this.Connection);
