@@ -25,10 +25,9 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, 1);
             WriteBytes(writer, new byte[1]{0});
             WriteBytes(writer, new byte[1]{0});
+            WriteInt32(writer, 40);
             WriteInt32(writer, 0);
-            WriteInt32(writer, 0);
-            WriteInt32(writer, 0);
-            Console.WriteLine("sdvdsq");
+            WriteInt32(writer, 24);
             for(int i =0; i < this._connection.Account.Players.Count; i++)
             {
                 Player player = this._connection.Account.Players[i];
@@ -66,11 +65,11 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt32(writer, player.race);
                 WriteInt32(writer, player.classId);
                 WriteInt32(writer, player.level);
-                WriteInt32(writer, 0);//hp
-                WriteInt32(writer, 0);//mp
+                WriteInt32(writer, 6);//hp
+                WriteInt32(writer, 1231);//mp
                 WriteInt32(writer, player.worldMapWorldId);
                 WriteInt32(writer, player.worldMapGuardId);
-                WriteInt32(writer, player.areaId);
+                WriteInt32(writer, player.worldMapSectionId);
                 WriteLong(writer, player.lastOnline);
                 WriteBytes(writer, new byte[1]{0});//deletion
                 WriteLong(writer, 0);
@@ -88,10 +87,11 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt32(writer, 0);
                 WriteInt32(writer, 0);
                 WriteBytes(writer, player.details3);
-                WriteBytes(writer, new byte[1]{0});//is gm ?
+                WriteByte(writer, (byte) player.GM);//is gm ?
                 WriteLong(writer, 0);
                 WriteInt32(writer, 0);
                 WriteBytes(writer, new byte[1]{0});
+                WriteInt32(writer, 0);
                 WriteLong(writer, 0);
                 WriteLong(writer, 0);
                 WriteLong(writer, 0);
@@ -111,13 +111,14 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt32(writer, 0);
                 WriteInt32(writer, 0);
                 WriteInt32(writer, 0);
+                
                 WriteInt32(writer, 0);
-                WriteInt32(writer, 0);
-                WriteInt32(writer, 0);
+                WriteInt32(writer, 55311);
+                WriteInt32(writer, 55311);
                 WriteByte(writer, 1);
                 WriteInt32(writer, 0);
                 WriteByte(writer, 0);
-                WriteInt32(writer, 0);
+                WriteInt32(writer, 25601);
                 WriteByte(writer, 0);
                 
                 WriteInt32(writer, 0);//achievement points
