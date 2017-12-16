@@ -23,7 +23,7 @@ namespace TeraServer.Data.DAO
 
         private int LoadTotalPlayers()
         {
-            string SQL = "SELECT COUNT(*) FROM `players`";
+            string SQL = "SELECT COUNT(*) FROM `players` WHERE `deleted` = 0";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -40,11 +40,11 @@ namespace TeraServer.Data.DAO
 
         public List<Player> LoadAccountPlayers(int accountId)
         {
-            string SQL = "SELECT * FROM `players` WHERE `accountid` = ?id";
+            string SQL = "SELECT * FROM `players` WHERE `accountid` = ?id AND `deleted` = 0";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", accountId);
             MySqlDataReader reader = command.ExecuteReader();
-            
+
             List<Player> players = new List<Player>();
             if (reader.HasRows)
             {
@@ -77,8 +77,8 @@ namespace TeraServer.Data.DAO
                     player.worldMapWorldId = (int) reader.GetValue(reader.GetOrdinal("worldMapWorldId"));
                     player.worldMapSectionId = (int) reader.GetValue(reader.GetOrdinal("worldMapSectionId"));
                     player.lobbyPosition = (int) reader.GetValue(reader.GetOrdinal("lobbyPosition"));
+                    player.GM = (int) reader.GetValue(reader.GetOrdinal("gm"));
                     players.Add(player);
-                    Console.WriteLine("OK");
                 }
             }
             reader.Close();
@@ -124,6 +124,21 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to save new character " + ex.Message);
             }
             return false;
+        }
+
+        public void DeletePlayer(int playerId)
+        {
+            string SQL = "UPDATE `players` SET `deleted` = 1 WHERE id = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", playerId);
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error when trying to deleted character : " + ex.Message);
+            }
         }
     }
 }

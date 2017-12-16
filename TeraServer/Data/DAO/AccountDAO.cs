@@ -86,12 +86,13 @@ namespace TeraServer.Data.DAO
 
         public Account LoadAccount(string login, string ticket)
         {
+
             string SQL = "SELECT * FROM `accounts` WHERE `login` = ?login AND `password` = ?ticket";
             MySqlCommand mySqlCommand = new MySqlCommand(SQL, this._mySqlConnection);
             mySqlCommand.Parameters.AddWithValue("?login", login);
             mySqlCommand.Parameters.AddWithValue("?ticket", ticket);
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
-            
+
             Account account = new Account();
             if (reader.HasRows)
             {
@@ -109,7 +110,7 @@ namespace TeraServer.Data.DAO
 
             if (account.AccountName != String.Empty)
             {
-                SQL = "SELECT * FROM `accountspackages` WHERe `accountId` = ?id";
+                SQL = "SELECT * FROM `accountspackages` WHERE `accountId` = ?id";
                 mySqlCommand = new MySqlCommand(SQL, this._mySqlConnection);
                 mySqlCommand.Parameters.AddWithValue("?id", account.AccountID);
                 reader = mySqlCommand.ExecuteReader();
@@ -122,7 +123,6 @@ namespace TeraServer.Data.DAO
                 }
                 reader.Close();
             }
-            
             return (account.AccountName == string.Empty) ? null : account;
         }
     }

@@ -27,6 +27,9 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xF5AB), typeof(C_REQUEST_VIP_SYSTEM_INFO));
             ClientTypes.Add(unchecked ((short)0xF1E7), typeof(C_CHECK_USERNAME));
             ClientTypes.Add(unchecked ((short)0xCB09), typeof(C_CREATE_USER));
+            ClientTypes.Add(unchecked ((short)0x4EDF), typeof(C_DELETE_USER));
+            ClientTypes.Add(unchecked ((short)0xDEE5), typeof(C_GET_USER_GUILD_LOGO));
+            
                     
             #endregion
 
@@ -46,6 +49,9 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_SEND_VIP_SYSTEM_INFO), unchecked ((short)0xCA0C));
             ServerTypes.Add(typeof(S_CHECK_USERNAME), unchecked ((short)0xA6A1));
             ServerTypes.Add(typeof(S_CREATE_USER), unchecked ((short)0x5DE2));
+            ServerTypes.Add(typeof(S_DELETE_USER), unchecked ((short)0xAD64));
+            ServerTypes.Add(typeof(S_GET_USER_GUILD_LOGO), unchecked ((short)0x9D25));
+            
             #endregion
         }
     }

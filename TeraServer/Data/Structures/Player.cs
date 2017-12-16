@@ -27,6 +27,7 @@ namespace TeraServer.Data.Structures
         public int worldMapWorldId;
         public int worldMapSectionId;
         public int lobbyPosition;
+        public int GM;
         
         public void Release()
         {
