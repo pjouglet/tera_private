@@ -140,5 +140,22 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to deleted character : " + ex.Message);
             }
         }
+
+        public void ChangeLobbyPosition(int playerId, int position)
+        {
+            string SQL = "UPDATE `players` SET `lobbyPosition` = ?position WHERE `id` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?position", position);
+            command.Parameters.AddWithValue("?id", playerId);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to change lobbyPosition :" + ex.Message);
+            }
+        }
     }
 }

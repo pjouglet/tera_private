@@ -29,6 +29,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xCB09), typeof(C_CREATE_USER));
             ClientTypes.Add(unchecked ((short)0x4EDF), typeof(C_DELETE_USER));
             ClientTypes.Add(unchecked ((short)0xDEE5), typeof(C_GET_USER_GUILD_LOGO));
+            ClientTypes.Add(unchecked ((short)0xDF1C), typeof(C_CHANGE_USER_LOBBY_SLOT_ID));
             
                     
             #endregion
