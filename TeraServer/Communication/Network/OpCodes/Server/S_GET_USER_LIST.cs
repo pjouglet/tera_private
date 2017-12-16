@@ -59,7 +59,6 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt16(writer, 0);
                 
                 
-                Console.WriteLine(player.playerId);
                 WriteInt32(writer, player.playerId);
                 WriteInt32(writer, player.gender);
                 WriteInt32(writer, player.race);
