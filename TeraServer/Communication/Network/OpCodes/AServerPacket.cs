@@ -96,7 +96,7 @@ namespace TeraServer.Communication.Network.OpCodes
 
             if (!OpCodes.ServerTypes.ContainsKey(GetType()))
             {
-                Console.WriteLine("UNKNOW OpCode {0", GetType().Name);
+                Console.WriteLine("UNKNOW OpCode {0}", GetType().Name);
                 return;
             }
 
