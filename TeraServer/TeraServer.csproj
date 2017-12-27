@@ -56,6 +56,7 @@
     <Compile Include="Communication\Network\Connection.cs" />
     <Compile Include="Communication\Network\OpCodes\AClientPacket.cs" />
     <Compile Include="Communication\Network\OpCodes\AServerPacket.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_AVAILABLE_EVENT_MATCHING_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CAN_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHANGE_USER_LOBBY_SLOT_ID.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHECK_USERNAME.cs" />

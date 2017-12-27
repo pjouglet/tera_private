@@ -15,6 +15,7 @@ namespace TeraServer.Data.Structures
         public string IP = String.Empty;
         public int vipLevel;
         public int vipCredits;
+        public long vipExp;
         
         public List<Player> Players = new List<Player>();
         public List<int> accountPackages = new List<int>();

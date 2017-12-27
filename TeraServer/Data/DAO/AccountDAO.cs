@@ -123,6 +123,7 @@ namespace TeraServer.Data.DAO
                 account.IP = reader.GetValue(reader.GetOrdinal("ip")).ToString();
                 account.vipLevel = (int)reader.GetValue(reader.GetOrdinal("vip_tier"));
                 account.vipCredits = (int)reader.GetValue(reader.GetOrdinal("vip_credits"));
+                account.vipExp = (int) reader.GetValue(reader.GetOrdinal("vip_exp"));
                 account.Players = DAOManager.PlayerDao.LoadAccountPlayers(account.AccountID);
             }
             reader.Close();

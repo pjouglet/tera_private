@@ -14,14 +14,15 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         {
             short next = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
+            
             WriteByte(writer, 1);
             WriteInt32(writer, this._account.vipLevel);//tier
+            WriteLong(writer, this._account.vipExp);
+            WriteInt32(writer, this._account.vipCredits);
             WriteInt32(writer, 0);
-            WriteInt32(writer, 0);
-            WriteDouble(writer, this._account.vipCredits);
             WriteByte(writer, 1);
-            WriteDouble(writer, 1608927620);
-            WriteDouble(writer, 1608927620);
+            WriteDouble(writer, Utils.Funcs.GetCurrentMilliseconds());
+            WriteDouble(writer, Utils.Funcs.GetCurrentMilliseconds());
             WriteByte(writer, 1);
             writetoPos(writer, next, (short)writer.BaseStream.Position);
             WriteInt16(writer, 0);

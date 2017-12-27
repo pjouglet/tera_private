@@ -45,6 +45,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xAACE), typeof(C_GUARD_PK_POLICY));
             ClientTypes.Add(unchecked ((short)0x7E23), typeof(C_REIGN_INFO));
             ClientTypes.Add(unchecked ((short)0xD3BA), typeof(C_SIMPLE_TIP_REPEAT_CHECK));
+            ClientTypes.Add(unchecked ((short)0xB677), typeof(C_AVAILABLE_EVENT_MATCHING_LIST));
             
                     
             #endregion
