@@ -29,6 +29,7 @@ namespace TeraServer.Data.Structures
         public int worldMapSectionId;
         public int lobbyPosition;
         public int GM;
+        public byte[] accountSettings;
 
         public Achievements Achievements;
 

@@ -1,9 +1,8 @@
-﻿using System;
-using TeraServer.Data.DAO;
+﻿using TeraServer.Data.DAO;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
 {
-    public class C_SAVE_CLIENT_ACCOUNT_SETTING : AClientPacket
+    public class C_SAVE_CLIENT_USER_SETTING : AClientPacket
     {
         private byte[] data;
         public override void Read()
@@ -15,7 +14,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
 
         public override void Process()
         {
-            DAOManager.AccountDao.SaveAccountSettings(this.data, this.Connection.Account.AccountID);
+            DAOManager.PlayerDao.savePlayerAccountSettings(this.Connection.player, this.data);
         }
     }
 }

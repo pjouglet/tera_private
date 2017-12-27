@@ -37,7 +37,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteFloat(writer, this.y);
             WriteFloat(writer, this.z);
             WriteInt32(writer, this.heading);
-            WriteInt16(writer, 70);//todo : speed with stat update
+            WriteInt16(writer, 110);//todo : speed with stat update
             WriteFloat(writer, this.tx);
             WriteFloat(writer, this.ty);
             WriteFloat(writer, this.tz);

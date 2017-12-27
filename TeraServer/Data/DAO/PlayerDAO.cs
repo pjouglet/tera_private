@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -69,9 +70,6 @@ namespace TeraServer.Data.DAO
                     player.details1 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details1")).ToString());
                     player.details2 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details2")).ToString());
                     player.details3 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details3")).ToString());
-                    /*player.details1 = Encoding.ASCII.GetBytes(reader.GetValue(reader.GetOrdinal("details1")).ToString());
-                    player.details1 = Encoding.ASCII.GetBytes(reader.GetValue(reader.GetOrdinal("details2")).ToString());
-                    player.details1 = Encoding.ASCII.GetBytes(reader.GetValue(reader.GetOrdinal("details3")).ToString());*/
                     //player.lastOnline = (long) reader.GetValue(reader.GetOrdinal("lastOnline"));
                     //player.creationTime = (long) reader.GetValue(reader.GetOrdinal("creationTime"));
                     player.worldMapGuardId = (int) reader.GetValue(reader.GetOrdinal("worldMapGuardId"));
@@ -79,6 +77,7 @@ namespace TeraServer.Data.DAO
                     player.worldMapSectionId = (int) reader.GetValue(reader.GetOrdinal("worldMapSectionId"));
                     player.lobbyPosition = (int) reader.GetValue(reader.GetOrdinal("lobbyPosition"));
                     player.GM = (int) reader.GetValue(reader.GetOrdinal("gm"));
+                    player.accountSettings = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("accountSettings")).ToString());
                     player.Achievements = new Achievements();
                     players.Add(player);
 
@@ -102,6 +101,7 @@ namespace TeraServer.Data.DAO
             }
             return false;
         }
+        
         public bool SaveNewPlayer(Player player, int accountId)
         {
             string SQL =
@@ -158,6 +158,51 @@ namespace TeraServer.Data.DAO
             catch (SqlException ex)
             {
                 Console.WriteLine("Error when trying to change lobbyPosition :" + ex.Message);
+            }
+        }
+
+        public void savePlayer(Player player)
+        {
+            string SQL = "UPDATE `players` SET `xp` = ?xp, `restedXp` = ?restedxp, `area` = ?area, `continent` = ?continent, `level` = ?level, `title` = ?title, `lastOnline` = ?lastOnline, `worldMapGuardId` = ?guardId, `worldMapWorldId` = ?worldId, `worldMapSectionId` = ?sectionId WHERE `id` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?xp", player.xp);
+            command.Parameters.AddWithValue("?restedxp", player.restedXp);
+            command.Parameters.AddWithValue("?area", player.areaId);
+            command.Parameters.AddWithValue("?continent", player.continentId);
+            command.Parameters.AddWithValue("?level", player.level);
+            command.Parameters.AddWithValue("?title", player.title);
+            command.Parameters.AddWithValue("?lastOnline", (int)Utils.Funcs.GetCurrentMilliseconds());
+            command.Parameters.AddWithValue("?guardId", player.worldMapGuardId);
+            command.Parameters.AddWithValue("?worldId", player.worldMapWorldId);
+            command.Parameters.AddWithValue("?sectionId", player.worldMapSectionId);
+            command.Parameters.AddWithValue("?id", player.playerId);
+            try
+            {
+                command.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save player :" + ex.Message);
+            }
+            
+        }
+
+        public void savePlayerAccountSettings(Player player, byte[] data)
+        {
+            string SQL = "UPDATE `players` SET `accountSettings` = ?settings WHERE `id` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?settings", Funcs.BytesToHex(data));
+            command.Parameters.AddWithValue("?id", player.playerId);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error when trying to save user settings " + e.Message);
+                throw;
             }
         }
     }

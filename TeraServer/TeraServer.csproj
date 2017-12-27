@@ -64,6 +64,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_DELETE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_EVENT_GUIDE.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_EXIT.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_GET_USER_GUILD_LOGO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_GET_USER_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_GUARD_PK_POLICY.cs" />
@@ -75,7 +76,9 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_GUILD_PERK_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_INGAMESTORE_PRODUCT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_VIP_SYSTEM_INFO.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_RETURN_TO_LOBBY.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SAVE_CLIENT_ACCOUNT_SETTING.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_SAVE_CLIENT_USER_SETTING.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SELECT_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SERVER_TIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SET_VISIBLE_RANGE.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_DAILY_QUEST_COMPLETE_COUNT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DELETE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_EXIT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_F2P_PremiumUser_Permission.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_FATIGABILITY_POINT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_FESTIVAL_LIST.cs" />
@@ -120,6 +124,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_LOADING_SCREEN_CONTROL_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_ACHIEVEMENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_CLIENT_ACCOUNT_SETTING.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_CLIENT_USER_SETTING.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_EP_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_HINT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_TOPO.cs" />
@@ -138,6 +143,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_REIGN_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REMAIN_PLAY_TIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REQUEST_INVITE_GUILD_TAG.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_RETURN_TO_LOBBY.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SELECT_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SEND_USER_PLAY_TIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SEND_VIP_SYSTEM_INFO.cs" />

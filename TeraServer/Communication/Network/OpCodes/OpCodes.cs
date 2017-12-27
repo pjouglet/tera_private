@@ -46,6 +46,9 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0x7E23), typeof(C_REIGN_INFO));
             ClientTypes.Add(unchecked ((short)0xD3BA), typeof(C_SIMPLE_TIP_REPEAT_CHECK));
             ClientTypes.Add(unchecked ((short)0xB677), typeof(C_AVAILABLE_EVENT_MATCHING_LIST));
+            ClientTypes.Add(unchecked ((short)0xE42D), typeof(C_RETURN_TO_LOBBY));
+            ClientTypes.Add(unchecked ((short)0x7985), typeof(C_EXIT));
+            ClientTypes.Add(unchecked ((short)0xE557), typeof(C_SAVE_CLIENT_USER_SETTING));
             
                     
             #endregion
@@ -124,6 +127,9 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_GUARD_PK_POLICY), unchecked ((short)0x98F7));         
             ServerTypes.Add(typeof(S_REIGN_INFO), unchecked ((short)0xA55E));         
             ServerTypes.Add(typeof(S_SIMPLE_TIP_REPEAT_CHECK), unchecked ((short)0xCA11));         
+            ServerTypes.Add(typeof(S_RETURN_TO_LOBBY), unchecked ((short)0xC3A7));         
+            ServerTypes.Add(typeof(S_EXIT), unchecked ((short)0xA2D9));        
+            ServerTypes.Add(typeof(S_LOAD_CLIENT_USER_SETTING), unchecked ((short)0x922D));        
             
             #endregion
         }

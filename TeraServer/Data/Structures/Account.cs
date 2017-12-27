@@ -19,6 +19,8 @@ namespace TeraServer.Data.Structures
         
         public List<Player> Players = new List<Player>();
         public List<int> accountPackages = new List<int>();
+
+        public byte[] accountSettings;
         
         public bool isOnline
         {

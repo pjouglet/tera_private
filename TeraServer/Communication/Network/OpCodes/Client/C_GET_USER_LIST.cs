@@ -13,7 +13,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
         {
             S_GET_USER_LIST s_get_user_list = new S_GET_USER_LIST(this.Connection);
             s_get_user_list.Send(this.Connection);
-            S_LOAD_CLIENT_ACCOUNT_SETTING sLoadClientAccountSetting = new S_LOAD_CLIENT_ACCOUNT_SETTING();
+            S_LOAD_CLIENT_ACCOUNT_SETTING sLoadClientAccountSetting = new S_LOAD_CLIENT_ACCOUNT_SETTING(this.Connection.Account);
             sLoadClientAccountSetting.Send(this.Connection);
             S_ACCOUNT_PACKAGE_LIST sAccountPackageList = new S_ACCOUNT_PACKAGE_LIST(this.Connection.Account);
             sAccountPackageList.Send(this.Connection);

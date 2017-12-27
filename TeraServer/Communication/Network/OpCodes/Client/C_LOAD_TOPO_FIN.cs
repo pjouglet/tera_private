@@ -26,7 +26,11 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_UPDATE_FRIEND_INFO sUpdateFriendInfo = new S_UPDATE_FRIEND_INFO();
             sUpdateFriendInfo.Send(this.Connection);
             
-            //setttings
+            S_LOAD_CLIENT_ACCOUNT_SETTING sLoadClientAccountSetting = new S_LOAD_CLIENT_ACCOUNT_SETTING(this.Connection.Account);
+            sLoadClientAccountSetting.Send(this.Connection);
+            
+            S_LOAD_CLIENT_USER_SETTING sLoadClientUserSetting = new S_LOAD_CLIENT_USER_SETTING(this.Connection.player);
+            sLoadClientUserSetting.Send(this.Connection);
             
             S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF sEpSystemDailyEventExpOnOff = new S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF();
             sEpSystemDailyEventExpOnOff.Send(this.Connection);
