@@ -93,6 +93,18 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_LOAD_EP_INFO), unchecked ((short)0x7D62));
             ServerTypes.Add(typeof(S_TRADE_BROKER_HIGHEST_ITEM_LEVEL), unchecked ((short)0xF195));
             ServerTypes.Add(typeof(S_SERVER_TIME), unchecked ((short)0xE7EC));
+            ServerTypes.Add(typeof(S_ONGOING_LEVEL_EVENT_LIST), unchecked ((short)0xFAD0));
+            ServerTypes.Add(typeof(S_ONGOING_HUNTING_EVENT_LIST), unchecked ((short)0x6DA4));
+            ServerTypes.Add(typeof(S_VISITED_SECTION_LIST), unchecked ((short)0x7192));
+            ServerTypes.Add(typeof(S_REQUEST_INVITE_GUILD_TAG), unchecked ((short)0xD8B7));
+            ServerTypes.Add(typeof(S_UPDATE_FRIEND_INFO), unchecked ((short)0xBD30));
+            ServerTypes.Add(typeof(S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF), unchecked ((short)0x9405));
+            ServerTypes.Add(typeof(S_SPAWN_ME), unchecked ((short)0x7BC3));
+            ServerTypes.Add(typeof(S_ATTENDANCE_EVENT_REWARD_COUNT), unchecked ((short)0xDB3A));
+            ServerTypes.Add(typeof(S_PLAYER_CHANGE_ALL_PROF), unchecked ((short)0x91A7));
+            ServerTypes.Add(typeof(S_PARCEL_READ_RECV_STATUS), unchecked ((short)0xB7E1));
+            ServerTypes.Add(typeof(S_USER_STATUS), unchecked ((short)0x912C));
+            
             
             #endregion
         }
