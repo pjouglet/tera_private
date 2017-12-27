@@ -20,6 +20,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             for (int i = 0; i < this._account.accountPackages.Count; i++)
             {
                 writetoPos(writer, next, (short) writer.BaseStream.Position);
+                WriteInt16(writer, (short)writer.BaseStream.Position);
                 next = (short)writer.BaseStream.Position;
                 WriteInt16(writer, 0);
                 WriteInt32(writer, this._account.accountPackages[i]);

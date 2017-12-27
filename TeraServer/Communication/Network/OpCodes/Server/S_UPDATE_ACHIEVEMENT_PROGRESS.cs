@@ -20,6 +20,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             for (int i = 0; i < this._player.Achievements.progress.Count; i++)
             {
                 writetoPos(writer, next, (short) writer.BaseStream.Position);
+                WriteInt16(writer, (short)writer.BaseStream.Position);
                 next = (short) writer.BaseStream.Position;
                 WriteInt16(writer,(short) this._player.Achievements.progress[i].requirements.Count);
 
@@ -29,6 +30,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 for (int j = 0; j < this._player.Achievements.progress[i].requirements.Count; j++)
                 {
                     writetoPos(writer, requirement, (short) writer.BaseStream.Position);
+                    WriteInt16(writer, (short)writer.BaseStream.Position);
                     requirement = (short) writer.BaseStream.Position;
                     WriteInt16(writer, 0);
                     WriteInt32(writer, j);

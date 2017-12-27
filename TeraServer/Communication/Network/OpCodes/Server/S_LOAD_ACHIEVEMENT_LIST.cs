@@ -28,6 +28,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             for (int i = 0; i < this._player.Achievements.completed.Count; i++)
             {
                 writetoPos(writer, next, (short)writer.BaseStream.Position);
+                WriteInt16(writer, (short)writer.BaseStream.Position);
                 next = (short)writer.BaseStream.Position;
                 WriteInt16(writer, 0);
                 WriteInt32(writer, this._player.Achievements.completed[i].id);
@@ -39,6 +40,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             for (int i = 0; i < 6; i++)
             {
                 writetoPos(writer, historyoffset, (short)writer.BaseStream.Position);
+                WriteInt16(writer, (short)writer.BaseStream.Position);
                 historyoffset = (short) writer.BaseStream.Position;
                 WriteInt16(writer, 0);
                 if (i == 0)

@@ -37,8 +37,14 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xAD75), typeof(C_LOAD_TOPO_FIN));
             ClientTypes.Add(unchecked ((short)0xAED9), typeof(C_TRADE_BROKER_HIGHEST_ITEM_LEVEL));
             ClientTypes.Add(unchecked ((short)0xAE9C), typeof(C_SERVER_TIME));
-            //ClientTypes.Add(unchecked ((short)0x5DFE), typeof(C_REQUEST_GUILD_PERK_LIST));
-           // ClientTypes.Add(unchecked ((short)0x837C), typeof(C_UPDATE_CONTENTS_PLAYTIME));
+            ClientTypes.Add(unchecked ((short)0x5DFE), typeof(C_REQUEST_GUILD_PERK_LIST));
+            ClientTypes.Add(unchecked ((short)0x837C), typeof(C_UPDATE_CONTENTS_PLAYTIME));
+            ClientTypes.Add(unchecked ((short)0xB15B), typeof(C_REQUEST_INGAMESTORE_PRODUCT_LIST));
+            ClientTypes.Add(unchecked ((short)0x87BB), typeof(C_PLAYER_LOCATION));
+            ClientTypes.Add(unchecked ((short)0x597E), typeof(C_EVENT_GUIDE));
+            ClientTypes.Add(unchecked ((short)0xAACE), typeof(C_GUARD_PK_POLICY));
+            ClientTypes.Add(unchecked ((short)0x7E23), typeof(C_REIGN_INFO));
+            ClientTypes.Add(unchecked ((short)0xD3BA), typeof(C_SIMPLE_TIP_REPEAT_CHECK));
             
                     
             #endregion
@@ -108,7 +114,15 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_UPDATE_ACHIEVEMENT_PROGRESS), unchecked ((short)0xE824));            
             ServerTypes.Add(typeof(S_QA_SET_ADMIN_LEVEL), unchecked ((short)0xD07E));            
             ServerTypes.Add(typeof(S_ADMIN_GM_SKILL), unchecked ((short)0xCBB0));            
-            ServerTypes.Add(typeof(S_CHANGE_RELATION), unchecked ((short)0xA7A4));            
+            ServerTypes.Add(typeof(S_CHANGE_RELATION), unchecked ((short)0xA7A4));         
+            ServerTypes.Add(typeof(S_INGAMESHOP_CATEGORY_BEGIN), unchecked ((short)0xED4D));         
+            ServerTypes.Add(typeof(S_INGAMESHOP_CATEGORY_END), unchecked ((short)0xAB38));         
+            ServerTypes.Add(typeof(S_INGAMESHOP_PRODUCT_BEGIN), unchecked ((short)0xA7CC));         
+            ServerTypes.Add(typeof(S_INGAMESHOP_PRODUCT_END), unchecked ((short)0x5878));         
+            ServerTypes.Add(typeof(S_USER_LOCATION), unchecked ((short)0xD9C7));         
+            ServerTypes.Add(typeof(S_GUARD_PK_POLICY), unchecked ((short)0x98F7));         
+            ServerTypes.Add(typeof(S_REIGN_INFO), unchecked ((short)0xA55E));         
+            ServerTypes.Add(typeof(S_SIMPLE_TIP_REPEAT_CHECK), unchecked ((short)0xCA11));         
             
             #endregion
         }
