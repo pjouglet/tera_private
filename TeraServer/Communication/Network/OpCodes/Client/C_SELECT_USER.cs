@@ -40,6 +40,12 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             
             S_BROCAST_GUILD_FLAG sBrocastGuildFlag = new S_BROCAST_GUILD_FLAG();
             sBrocastGuildFlag.Send(this.Connection);
+            
+            if (this.Connection.player.GM == 1)
+            {
+                S_QA_SET_ADMIN_LEVEL sQaSetAdminLevel = new S_QA_SET_ADMIN_LEVEL();
+                sQaSetAdminLevel.Send(this.Connection);
+            }
 
             S_LOGIN sLogin = new S_LOGIN(this.Connection.player);
             sLogin.Send(this.Connection);

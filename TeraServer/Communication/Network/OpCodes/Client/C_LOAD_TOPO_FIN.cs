@@ -57,6 +57,15 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             
             S_UPDATE_ACHIEVEMENT_PROGRESS sUpdateAchievementProgress = new S_UPDATE_ACHIEVEMENT_PROGRESS(this.Connection.player);
             sUpdateAchievementProgress.Send(this.Connection);
+
+            if (this.Connection.player.GM == 1)
+            {
+                S_ADMIN_GM_SKILL sAdminGmSkill = new S_ADMIN_GM_SKILL(0, 0);
+                sAdminGmSkill.Send(this.Connection);
+                
+                S_CHANGE_RELATION sChangeRelation = new S_CHANGE_RELATION(this.Connection.player, 26);
+                sChangeRelation.Send(this.Connection);
+            }
             
         }
     }

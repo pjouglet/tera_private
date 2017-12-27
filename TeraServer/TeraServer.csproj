@@ -78,6 +78,7 @@
     <Compile Include="Communication\Network\OpCodes\OpCodes.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_BENEFIT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_PACKAGE_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_ADMIN_GM_SKILL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ARTISAN_RECIPE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ARTISAN_SKILL_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ATTENDANCE_EVENT_REWARD_COUNT.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_AVAILABLE_SOCIAL_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_BROCAST_GUILD_FLAG.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CAN_CREATE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_CHANGE_RELATION.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CLEAR_QUEST_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_COMPLETED_MISSION_INFO.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_PARCEL_READ_RECV_STATUS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PET_INCUBATOR_INFO_CHANGE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_CHANGE_ALL_PROF.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_QA_SET_ADMIN_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REMAIN_PLAY_TIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REQUEST_INVITE_GUILD_TAG.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SELECT_USER.cs" />

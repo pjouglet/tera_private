@@ -105,8 +105,10 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_PARCEL_READ_RECV_STATUS), unchecked ((short)0xB7E1));
             ServerTypes.Add(typeof(S_USER_STATUS), unchecked ((short)0x912C));
             ServerTypes.Add(typeof(S_LOAD_ACHIEVEMENT_LIST), unchecked ((short)0xFC0D));
-            ServerTypes.Add(typeof(S_UPDATE_ACHIEVEMENT_PROGRESS), unchecked ((short)0xE824));
-            
+            ServerTypes.Add(typeof(S_UPDATE_ACHIEVEMENT_PROGRESS), unchecked ((short)0xE824));            
+            ServerTypes.Add(typeof(S_QA_SET_ADMIN_LEVEL), unchecked ((short)0xD07E));            
+            ServerTypes.Add(typeof(S_ADMIN_GM_SKILL), unchecked ((short)0xCBB0));            
+            ServerTypes.Add(typeof(S_CHANGE_RELATION), unchecked ((short)0xA7A4));            
             
             #endregion
         }
