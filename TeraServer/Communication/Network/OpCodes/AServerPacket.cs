@@ -145,6 +145,7 @@ namespace TeraServer.Communication.Network.OpCodes
                     catch (Exception ex)
                     {
                         Console.WriteLine("Can't write packet {0}", GetType().Name);
+                        Console.WriteLine(ex.Message);
                         return;
                     }
                 }

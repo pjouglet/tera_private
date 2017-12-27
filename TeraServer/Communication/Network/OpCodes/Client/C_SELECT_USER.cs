@@ -104,7 +104,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_LOAD_HINT sLoadHint = new S_LOAD_HINT();
             sLoadHint.Send(this.Connection);
             
-            S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST();
+            S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST(this.Connection.Account);
             sAccountBenefitList.Send(this.Connection);
             
             S_SEND_USER_PLAY_TIME sSendUserPlayTime = new S_SEND_USER_PLAY_TIME();

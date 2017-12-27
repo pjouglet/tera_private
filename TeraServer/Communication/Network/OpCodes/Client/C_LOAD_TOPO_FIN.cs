@@ -37,7 +37,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_ATTENDANCE_EVENT_REWARD_COUNT sAttendanceEventRewardCount = new S_ATTENDANCE_EVENT_REWARD_COUNT();
             sAttendanceEventRewardCount.Send(this.Connection);
             
-            S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST();
+            S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST(this.Connection.Account);
             sAccountBenefitList.Send(this.Connection);
             
             S_PLAYER_CHANGE_ALL_PROF sPlayerChangeAllProf = new S_PLAYER_CHANGE_ALL_PROF();
@@ -52,7 +52,12 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_USER_STATUS sUserStatus = new S_USER_STATUS(this.Connection.player);
             sUserStatus.Send(this.Connection);
             
-            //achievement
+            S_LOAD_ACHIEVEMENT_LIST sLoadAchievementList = new S_LOAD_ACHIEVEMENT_LIST(this.Connection.player);
+            sLoadAchievementList.Send(this.Connection);
+            
+            S_UPDATE_ACHIEVEMENT_PROGRESS sUpdateAchievementProgress = new S_UPDATE_ACHIEVEMENT_PROGRESS(this.Connection.player);
+            sUpdateAchievementProgress.Send(this.Connection);
+            
         }
     }
 }

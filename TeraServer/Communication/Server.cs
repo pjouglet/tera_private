@@ -4,6 +4,7 @@ using TeraServer.Communication.Network;
 using TeraServer.Communication.Network.OpCodes;
 using TeraServer.Configuration;
 using TeraServer.Data.DAO;
+using TeraServer.Data.Structures;
 
 namespace TeraServer.Communication
 {
@@ -20,6 +21,10 @@ namespace TeraServer.Communication
                 this.TcpServer = new TCPServer("*", Config.getServerPort(), Config.getServerMaxConnection());
 
                 Connection.SendAllThread.Start();
+                
+                Console.WriteLine("Loading Achievements...");
+                Achievements.LoadAchievementsFromFile();
+                Console.WriteLine("Loaded " + Achievements.achievementList.Count + " achievements");
                 
                 Console.WriteLine("Loading OpCodes...");
                 OpCodes.Init();

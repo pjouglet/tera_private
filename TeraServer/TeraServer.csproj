@@ -102,6 +102,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_HUDDLE_ADDING.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_INVEN.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOADING_SCREEN_CONTROL_INFO.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_ACHIEVEMENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_CLIENT_ACCOUNT_SETTING.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_EP_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_LOAD_HINT.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_ME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_TRADE_BROKER_HIGHEST_ITEM_LEVEL.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_ACHIEVEMENT_PROGRESS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_CONTENTS_ON_OFF.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_FRIEND_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_NPCGUILD.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Data\DAO\PlayerDAO.cs" />
     <Compile Include="Data\Interfaces\IConnection.cs" />
     <Compile Include="Data\Structures\Account.cs" />
+    <Compile Include="Data\Structures\Achievements.cs" />
     <Compile Include="Data\Structures\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

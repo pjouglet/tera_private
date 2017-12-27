@@ -65,6 +65,7 @@ namespace TeraServer.Data.DAO
                     player.areaId = (int) reader.GetValue(reader.GetOrdinal("area"));
                     player.continentId = (int) reader.GetValue(reader.GetOrdinal("continent"));
                     player.level = (int) reader.GetValue(reader.GetOrdinal("level"));
+                    player.title = (int) reader.GetValue(reader.GetOrdinal("title"));
                     player.details1 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details1")).ToString());
                     player.details2 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details2")).ToString());
                     player.details3 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details3")).ToString());
@@ -78,6 +79,7 @@ namespace TeraServer.Data.DAO
                     player.worldMapSectionId = (int) reader.GetValue(reader.GetOrdinal("worldMapSectionId"));
                     player.lobbyPosition = (int) reader.GetValue(reader.GetOrdinal("lobbyPosition"));
                     player.GM = (int) reader.GetValue(reader.GetOrdinal("gm"));
+                    player.Achievements = new Achievements();
                     players.Add(player);
 
                 }

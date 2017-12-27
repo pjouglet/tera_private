@@ -18,6 +18,7 @@ namespace TeraServer.Data.Structures
         public int areaId;
         public int continentId;
         public int level;
+        public int title;
         public byte[] details1;
         public byte[] details2;
         public byte[] details3;
@@ -28,6 +29,8 @@ namespace TeraServer.Data.Structures
         public int worldMapSectionId;
         public int lobbyPosition;
         public int GM;
+
+        public Achievements Achievements;
 
         public int model
         {

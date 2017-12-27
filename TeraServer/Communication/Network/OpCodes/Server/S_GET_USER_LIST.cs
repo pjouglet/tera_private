@@ -120,7 +120,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt32(writer, 25601);
                 WriteByte(writer, 0);
                 
-                WriteInt32(writer, 15535);//achievement points
+                WriteInt32(writer, (int)player.Achievements.getTotalPoints());//achievement points
                 WriteInt32(writer, 4);//laurel
                 WriteInt32(writer, player.lobbyPosition);
                 WriteInt32(writer, 0);

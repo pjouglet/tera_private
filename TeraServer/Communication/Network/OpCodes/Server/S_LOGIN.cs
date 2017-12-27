@@ -63,7 +63,7 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             WriteLong(writer, 0);//ingame time
             WriteByte(writer, 1);
             WriteLong(writer, 0);//ban chat until
-            WriteInt32(writer, 0);//title id
+            WriteInt32(writer, this._player.title);//title id
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
