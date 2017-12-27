@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TeraServer.Communication.Network.OpCodes.Client;
+using TeraServer.Communication.Network.OpCodes.Serve;
 using TeraServer.Communication.Network.OpCodes.Server;
 
 namespace TeraServer.Communication.Network.OpCodes
@@ -31,6 +32,14 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xDEE5), typeof(C_GET_USER_GUILD_LOGO));
             ClientTypes.Add(unchecked ((short)0xDF1C), typeof(C_CHANGE_USER_LOBBY_SLOT_ID));
             
+            ClientTypes.Add(unchecked ((short)0x8EE1), typeof(C_SAVE_CLIENT_ACCOUNT_SETTING));
+            ClientTypes.Add(unchecked ((short)0x7EC4), typeof(C_SELECT_USER));
+            ClientTypes.Add(unchecked ((short)0xAD75), typeof(C_LOAD_TOPO_FIN));
+            ClientTypes.Add(unchecked ((short)0xAED9), typeof(C_TRADE_BROKER_HIGHEST_ITEM_LEVEL));
+            ClientTypes.Add(unchecked ((short)0xAE9C), typeof(C_SERVER_TIME));
+            //ClientTypes.Add(unchecked ((short)0x5DFE), typeof(C_REQUEST_GUILD_PERK_LIST));
+           // ClientTypes.Add(unchecked ((short)0x837C), typeof(C_UPDATE_CONTENTS_PLAYTIME));
+            
                     
             #endregion
 
@@ -52,6 +61,38 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_CREATE_USER), unchecked ((short)0x5DE2));
             ServerTypes.Add(typeof(S_DELETE_USER), unchecked ((short)0xAD64));
             ServerTypes.Add(typeof(S_GET_USER_GUILD_LOGO), unchecked ((short)0x9D25));
+            
+            ServerTypes.Add(typeof(S_SELECT_USER), unchecked ((short)0x7FF7));
+            ServerTypes.Add(typeof(S_BROCAST_GUILD_FLAG), unchecked ((short)0xDF2F));
+            ServerTypes.Add(typeof(S_LOGIN), unchecked ((short)0xD3AE));
+            ServerTypes.Add(typeof(S_SHOW_NPC_TO_MAP), unchecked ((short)0xCFDC));
+            ServerTypes.Add(typeof(S_INVEN), unchecked ((short)0x5221));
+            ServerTypes.Add(typeof(S_AVAILABLE_SOCIAL_LIST), unchecked ((short)0xF2AA));
+            ServerTypes.Add(typeof(S_CLEAR_QUEST_INFO), unchecked ((short)0xF64C));
+            ServerTypes.Add(typeof(S_DAILY_QUEST_COMPLETE_COUNT), unchecked ((short)0xD1FF));
+            ServerTypes.Add(typeof(S_COMPLETED_MISSION_INFO), unchecked ((short)0x5DD4));
+            ServerTypes.Add(typeof(S_ARTISAN_SKILL_LIST), unchecked ((short)0xC68E));
+            ServerTypes.Add(typeof(S_ARTISAN_RECIPE_LIST), unchecked ((short)0xF725));
+            ServerTypes.Add(typeof(S_PET_INCUBATOR_INFO_CHANGE), unchecked ((short)0x63E3));
+            ServerTypes.Add(typeof(S_MOVE_DISTANCE_DELTA), unchecked ((short)0xFBF6));
+            ServerTypes.Add(typeof(S_MY_DESCRIPTION), unchecked ((short)0x5C53));
+            ServerTypes.Add(typeof(S_F2P_PremiumUser_Permission), unchecked ((short)0xDF6E));
+            ServerTypes.Add(typeof(S_HUDDLE_ADDING), unchecked ((short)0x5633));
+            ServerTypes.Add(typeof(S_MASSTIGE_STATUS), unchecked ((short)0xC1F9));
+            ServerTypes.Add(typeof(S_AVAILABLE_EVENT_MATCHING_LIST), unchecked ((short)0x7AC9));
+            ServerTypes.Add(typeof(S_CURRENT_ELECTION_STATE), unchecked ((short)0x525E));
+            ServerTypes.Add(typeof(S_USER_ITEM_EQUIP_CHANGER), unchecked ((short)0xA50A));
+            ServerTypes.Add(typeof(S_FESTIVAL_LIST), unchecked ((short)0x93A9));
+            ServerTypes.Add(typeof(S_LOAD_TOPO), unchecked ((short)0xBF99));
+            ServerTypes.Add(typeof(S_LOAD_HINT), unchecked ((short)0xD24C));
+            ServerTypes.Add(typeof(S_ACCOUNT_BENEFIT_LIST), unchecked ((short)0x60CC));
+            ServerTypes.Add(typeof(S_SEND_USER_PLAY_TIME), unchecked ((short)0xD094));
+            //ServerTypes.Add(typeof(S_PCBANGINVENTORY_DATALIST), unchecked ((short)0xE6C7));
+            ServerTypes.Add(typeof(S_UPDATE_NPCGUILD), unchecked ((short)0xDF3F));
+            ServerTypes.Add(typeof(S_FATIGABILITY_POINT), unchecked ((short)0xD274));
+            ServerTypes.Add(typeof(S_LOAD_EP_INFO), unchecked ((short)0x7D62));
+            ServerTypes.Add(typeof(S_TRADE_BROKER_HIGHEST_ITEM_LEVEL), unchecked ((short)0xF195));
+            ServerTypes.Add(typeof(S_SERVER_TIME), unchecked ((short)0xE7EC));
             
             #endregion
         }

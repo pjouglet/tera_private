@@ -28,6 +28,7 @@ namespace TeraServer.Communication.Network
         private int sendDataSize;
         private object SendLock = new object();
         private Account _account;
+        public Player player { get; set; }
         
         public static Thread SendAllThread = new Thread(SendAll);
         protected static void SendAll()
@@ -196,6 +197,7 @@ namespace TeraServer.Communication.Network
         {
             sendData.Add(data);
             sendDataSize += data.Length;
+            Send();
         }
 
         public long Ping()

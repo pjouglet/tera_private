@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using TeraServer.Data.Structures;
+using TeraServer.Utils;
 
 namespace TeraServer.Data.DAO
 {
@@ -82,6 +83,24 @@ namespace TeraServer.Data.DAO
                 }
             }
             
+        }
+
+        public void SaveAccountSettings(byte[] data, int accountId)
+        {
+            string SQL = "UPDATE `accounts` SET `accountSettings` = ?settings WHERE `id` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?settings", Funcs.BytesToHex(data));
+            command.Parameters.AddWithValue("?id", accountId);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save accountSettings " + ex.Message);
+                throw;
+            }
         }
 
         public Account LoadAccount(string login, string ticket)

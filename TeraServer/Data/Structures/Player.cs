@@ -6,9 +6,9 @@ namespace TeraServer.Data.Structures
     {
         public int playerId;
         public string name = String.Empty;
-        public double posX;
-        public double posY;
-        public double posZ;
+        public float posX;
+        public float posY;
+        public float posZ;
         public int heading;
         public int race;
         public int gender;
@@ -28,10 +28,16 @@ namespace TeraServer.Data.Structures
         public int worldMapSectionId;
         public int lobbyPosition;
         public int GM;
-        
+
+        public int model
+        {
+            get { return 10101 + 200 * race + 100 * gender + classId; }
+        }
+
         public void Release()
         {
             //todo do release
         }
+        
     }
 }

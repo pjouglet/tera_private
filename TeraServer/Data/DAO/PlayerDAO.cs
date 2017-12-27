@@ -53,9 +53,9 @@ namespace TeraServer.Data.DAO
                     Player player = new Player();
                     player.playerId = (int)reader.GetValue(reader.GetOrdinal("id"));
                     player.name = reader.GetValue(reader.GetOrdinal("name")).ToString();
-                    player.posX = (double) reader.GetValue(reader.GetOrdinal("x"));
-                    player.posY = (double) reader.GetValue(reader.GetOrdinal("y"));
-                    player.posZ = (double) reader.GetValue(reader.GetOrdinal("z"));
+                    player.posX = (float) reader.GetValue(reader.GetOrdinal("x"));
+                    player.posY = (float) reader.GetValue(reader.GetOrdinal("y"));
+                    player.posZ = (float) reader.GetValue(reader.GetOrdinal("z"));
                     player.heading = (int) reader.GetValue(reader.GetOrdinal("h"));
                     player.gender = (int) reader.GetValue(reader.GetOrdinal("gender"));
                     player.race = (int) reader.GetValue(reader.GetOrdinal("race"));
@@ -79,6 +79,7 @@ namespace TeraServer.Data.DAO
                     player.lobbyPosition = (int) reader.GetValue(reader.GetOrdinal("lobbyPosition"));
                     player.GM = (int) reader.GetValue(reader.GetOrdinal("gm"));
                     players.Add(player);
+
                 }
             }
             reader.Close();

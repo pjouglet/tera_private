@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using TeraServer.Data.Interfaces;
+using TeraServer.Data.Structures;
 using TeraServer.Utils;
 
 namespace TeraServer.Communication.Network.OpCodes
@@ -13,6 +14,27 @@ namespace TeraServer.Communication.Network.OpCodes
 
         public abstract void Write(BinaryWriter writer);
 
+        protected void writeWorldId(BinaryWriter writer, Player player)
+        {
+            WriteLong(writer, 1);//todo : change with eid
+        }
+        
+        protected void WriteSpawnId(BinaryWriter writer, Player player, bool login)
+        {
+            if (login)
+            {
+                writeWorldId(writer, player);
+                WriteInt32(writer, 1096);//serverid
+                WriteInt32(writer, player.playerId);
+            }
+            else
+            {
+                WriteInt32(writer, 1096);//serverid
+                WriteInt32(writer, player.playerId);
+                writeWorldId(writer, player);
+            }
+        }
+        
         protected void WriteInt32(BinaryWriter writer, int val)
         {
             writer.Write(val);
