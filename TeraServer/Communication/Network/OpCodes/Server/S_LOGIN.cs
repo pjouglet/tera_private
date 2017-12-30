@@ -13,6 +13,11 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
         
         public override void Write(BinaryWriter writer)
         {
+            long totalXp = 0;
+            for (int i = 0; i < _player.level - 1; i++)
+                totalXp += Levels.levelList[i];
+            totalXp += _player.xp;
+            
             short namePos = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
 
@@ -29,8 +34,8 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             WriteInt32(writer, 0);
             WriteByte(writer, 1);//alive
             WriteInt32(writer, 0);
-            WriteInt32(writer, 52);
-            WriteInt32(writer, 110);
+            WriteInt32(writer, this._player.playerStats.walkSpeed);
+            WriteInt32(writer, this._player.playerStats.runSpeed);
             WriteBytes(writer, _player.details3);
             WriteByte(writer, 1);
             WriteByte(writer, 0);
@@ -42,14 +47,14 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             WriteInt16(writer, 1);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);//playerKills
-            WriteLong(writer, _player.restedXp);
+            WriteLong(writer, totalXp);//total xp
             WriteLong(writer, _player.xp);
-            WriteLong(writer, 0);//next level xp
+            WriteLong(writer, Levels.levelList[_player.level] - _player.xp);//next level xp
             WriteInt32(writer, 0);            
             WriteInt32(writer, 0);            
             WriteInt32(writer, 0);            
             WriteInt32(writer, 0); 
-            WriteInt32(writer, 0);//rested current
+            WriteInt32(writer, 100);//rested current
             WriteInt32(writer, 419);//rested max
             WriteFloat(writer, 1);
             WriteFloat(writer, 1);
