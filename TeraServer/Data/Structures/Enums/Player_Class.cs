@@ -15,6 +15,7 @@
         FIGHTER = 10,
         ASSASSIN = 11,
         GLAIVER = 12,
+        COMMON = 13
         
     }
 }

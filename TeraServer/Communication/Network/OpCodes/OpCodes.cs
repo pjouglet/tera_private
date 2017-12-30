@@ -55,6 +55,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xE500), typeof(C_ADMIN_ADD_CUSTOM_BOOKMARK));
             ClientTypes.Add(unchecked ((short)0xFBD7), typeof(C_ADMIN_REQUEST_CUSTOM_BOOKMARK));
             ClientTypes.Add(unchecked ((short)0x9653), typeof(C_NPC_CONTACT));    
+            ClientTypes.Add(unchecked ((short)0xE9C7), typeof(C_SKILL_LEARN_LIST));    
             
                     
             #endregion
@@ -143,6 +144,8 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_DIALOG), unchecked ((short)0xF215));        
             ServerTypes.Add(typeof(S_PLAYER_STAT_UPDATE), unchecked ((short)0x94DD));        
             ServerTypes.Add(typeof(S_SKILL_LIST), unchecked ((short)0xD42C));        
+            ServerTypes.Add(typeof(S_WATCHED_MOVIES), unchecked ((short)0xFBA7));        
+            ServerTypes.Add(typeof(S_SKILL_LEARN_LIST), unchecked ((short)0xEDE3));        
             
             #endregion
         }

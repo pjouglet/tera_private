@@ -25,6 +25,10 @@ namespace TeraServer.Communication
                 
                 Levels.LoadLevels();
                 
+                Console.WriteLine("Loading skills...");
+                Skill_Template.LoadSkills();
+                Console.WriteLine("Loaded " + Skill_Template.SkillTemplates.Count + " skills");
+                
                 Console.WriteLine("Loading templates...");
                 Class_Template.LoadTemplates();
                 Console.WriteLine("Loaded " + Class_Template.ClassTemplates.Count + " templates");

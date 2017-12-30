@@ -26,6 +26,7 @@ namespace TeraServer.Data.Structures.Templates
         public float stunResist;
         public int maxStamina;
         public List<Skill_Template> SkillList = new List<Skill_Template>();
+        public List<Skill_Template> SkillLearnList = new List<Skill_Template>();
 
         public static void LoadTemplates()
         {
@@ -87,16 +88,18 @@ namespace TeraServer.Data.Structures.Templates
                     XmlNodeList skillsList = node.SelectNodes("./skills/skill");
                     foreach (XmlNode skills in skillsList)
                     {
-                        Skill_Template skillTemplate = new Skill_Template();
                         foreach (XmlAttribute attribute in skills.Attributes)
                         {
-                            if (attribute.Name == "type")
-                                skillTemplate.type = Convert.ToInt32(attribute.Value);
                             if (attribute.Name == "id")
-                                skillTemplate.id = Convert.ToInt32(attribute.Value);
+                            {
+                                Skill_Template skillTemplate = Skill_Template.getTemplateById(Convert.ToInt32(attribute.Value));
+                                if(skillTemplate != null)
+                                    template.SkillList.Add(skillTemplate);
+                            }
                         }
-                        template.SkillList.Add(skillTemplate);
+                        
                     }
+                    template.SkillLearnList = Skill_Template.getTemplatesByClass(template.classId);
                     ClassTemplates.Add(template);
                 }
             }
