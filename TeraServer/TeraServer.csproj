@@ -149,6 +149,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_PARCEL_READ_RECV_STATUS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PET_INCUBATOR_INFO_CHANGE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_CHANGE_ALL_PROF.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_STAT_UPDATE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_QA_SET_ADMIN_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REIGN_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REMAIN_PLAY_TIME.cs" />
@@ -187,7 +188,9 @@
     <Compile Include="Data\Interfaces\IConnection.cs" />
     <Compile Include="Data\Structures\Account.cs" />
     <Compile Include="Data\Structures\Achievements.cs" />
+    <Compile Include="Data\Structures\Levels.cs" />
     <Compile Include="Data\Structures\Player.cs" />
+    <Compile Include="Data\Structures\Stats.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Utils.cs" />

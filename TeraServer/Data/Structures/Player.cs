@@ -40,6 +40,7 @@ namespace TeraServer.Data.Structures
         public int GM;
         public byte[] accountSettings;
         public List<bookmark> AdminBookmarks = new List<bookmark>();
+        public Stats playerStats;
         
         
 
@@ -53,6 +54,28 @@ namespace TeraServer.Data.Structures
         public void Release()
         {
             //todo do release
+        }
+
+        public void updateStats()
+        {
+            if (this.playerStats.hp < this.playerStats.maxHp)
+                if (this.playerStats.hp + 1000 > this.playerStats.maxHp)
+                    this.playerStats.hp = this.playerStats.maxHp;
+                else
+                    this.playerStats.hp += 1000;
+            
+            if (this.playerStats.mp < this.playerStats.maxMp)
+                if (this.playerStats.mp + 500 > this.playerStats.maxMp)
+                    this.playerStats.mp = this.playerStats.maxMp;
+                else
+                    this.playerStats.mp += 500;
+            
+            if (this.playerStats.stamina < this.playerStats.staminaMax)
+                if (this.playerStats.stamina + 100 > this.playerStats.staminaMax)
+                    this.playerStats.stamina = this.playerStats.staminaMax;
+                else
+                    this.playerStats.stamina += 100;
+            
         }
         
     }
