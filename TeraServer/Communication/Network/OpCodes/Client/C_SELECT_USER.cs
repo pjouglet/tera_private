@@ -59,6 +59,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_SHOW_NPC_TO_MAP sShowNpcToMap = new S_SHOW_NPC_TO_MAP();
             sShowNpcToMap.Send(this.Connection);
 
+            S_PLAYER_STAT_UPDATE sPlayerStatUpdate = new S_PLAYER_STAT_UPDATE(this.Connection.player);
+            sPlayerStatUpdate.Send(this.Connection);
+
             S_INVEN sInven = new S_INVEN(this.Connection.player);
             sInven.Send(this.Connection);
             

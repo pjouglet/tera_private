@@ -9,6 +9,8 @@
         {
             AccountDao = new AccountDAO(str);
             PlayerDao = new PlayerDAO(str);
+            
+            PlayerDAO.UpdatePlayerThread.Start();
         }
     }
 }

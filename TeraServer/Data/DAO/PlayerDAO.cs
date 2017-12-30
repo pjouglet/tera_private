@@ -4,7 +4,10 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using MySql.Data.MySqlClient;
+using TeraServer.Communication.Network;
+using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.Structures;
 using TeraServer.Utils;
 
@@ -13,6 +16,7 @@ namespace TeraServer.Data.DAO
     public class PlayerDAO : BaseDAO
     {
         private MySqlConnection _mySqlConnection;
+        public static Thread UpdatePlayerThread = new Thread(upDatePlayersThread);
         
         public PlayerDAO(string str) : base(str)
         {
@@ -79,6 +83,14 @@ namespace TeraServer.Data.DAO
                     player.GM = (int) reader.GetValue(reader.GetOrdinal("gm"));
                     player.accountSettings = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("accountSettings")).ToString());
                     player.Achievements = new Achievements();
+                    player.playerStats = new Stats();
+                    
+                    //todo load stats
+                    player.playerStats.runSpeed = 150;
+                    player.playerStats.walkSpeed = 52;
+                    player.playerStats.maxHp = 40000;
+                    player.playerStats.maxMp = 30000;
+                    player.playerStats.staminaMax = 2000;
                     players.Add(player);
 
                 }
@@ -256,6 +268,24 @@ namespace TeraServer.Data.DAO
                 
             }
             reader.Close();
+        }
+
+        public static void upDatePlayersThread()
+        {
+            while (true)
+            {
+                for (int i = 0; i < Communication.Network.Connection.Connections.Count; i++)
+                {
+                    if (Communication.Network.Connection.Connections[i].player != null)
+                    {
+                        Player player = Communication.Network.Connection.Connections[i].player;
+                        player.updateStats();
+                        S_PLAYER_STAT_UPDATE sPlayerStatUpdate = new S_PLAYER_STAT_UPDATE(player);
+                        sPlayerStatUpdate.Send(Communication.Network.Connection.Connections[i]);
+                    }
+                }
+                Thread.Sleep(3000);
+            }
         }
     }
 }

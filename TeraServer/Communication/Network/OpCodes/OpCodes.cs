@@ -141,6 +141,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_ADMIN_CUSTOM_BOOKMARK_LIST), unchecked ((short)0xFA77));        
             ServerTypes.Add(typeof(S_NPC_MENU_SELECT), unchecked ((short)0x51EA));        
             ServerTypes.Add(typeof(S_DIALOG), unchecked ((short)0xF215));        
+            ServerTypes.Add(typeof(S_PLAYER_STAT_UPDATE), unchecked ((short)0x94DD));        
             
             #endregion
         }
