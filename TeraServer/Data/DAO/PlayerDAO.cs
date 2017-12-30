@@ -116,28 +116,35 @@ namespace TeraServer.Data.DAO
 
         public bool UsernameValid(string username)
         {
-            string SQL = "SELECT count(id) FROM `players` WHERE name = ?name";
+            string SQL = "SELECT `name` FROM `players` WHERE name = ?name";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?name", username);
             MySqlDataReader reader = command.ExecuteReader();
 
             if (reader.HasRows)
             {
-                reader.Close();
-                return true;
+                reader.Read();
+                if (reader.GetValue(reader.GetOrdinal("name")).ToString() == username)
+                {
+                    reader.Close();
+                    return true;
+                }
+                
             }
+            reader.Close();
             return false;
         }
         
         public bool SaveNewPlayer(Player player, Connection connection)
         {
             string SQL =
-                "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`) VALUES(?id, ?name, ?race, ?gender, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition)";
+                "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `level`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`) VALUES(?id, ?name, ?race, ?gender, ?level, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition)";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", connection.Account.AccountID);
             command.Parameters.AddWithValue("?name", player.name);
             command.Parameters.AddWithValue("?race", (int)player.race);
             command.Parameters.AddWithValue("?gender", (int)player.gender);
+            command.Parameters.AddWithValue("?level", (int)player.level);
             command.Parameters.AddWithValue("?class", (int)player.classId);
             command.Parameters.AddWithValue("?details1", Funcs.BytesToHex(player.details1));
             command.Parameters.AddWithValue("?details2", Funcs.BytesToHex(player.details2));
@@ -146,7 +153,17 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?lobbyPosition", connection.Account.Players.Count);
             try
             {
-                player.playerId = Convert.ToInt32(command.ExecuteScalar());
+                command.ExecuteNonQuery();
+                SQL = "SELECT `id` FROM `players` WHERE `name` = ?name";
+                command = new MySqlCommand(SQL, this._mySqlConnection);
+                command.Parameters.AddWithValue("?name", player.name);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    player.playerId = (int) reader.GetValue(reader.GetOrdinal("id"));
+                }
+                reader.Close();
             }
             catch (SqlException ex)
             {

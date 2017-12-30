@@ -15,9 +15,9 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         {
             bool exist = DAOManager.PlayerDao.UsernameValid(this.username);
             if(exist)
-                WriteByte(writer, 1);
-            else
                 WriteByte(writer, 0);
+            else
+                WriteByte(writer, 1);
         }
     }
 }

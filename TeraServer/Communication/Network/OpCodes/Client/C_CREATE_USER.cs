@@ -40,7 +40,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.playerStats = new Stats();
 
             Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
-            
+            _player.level = template.startLevel;
             _player.playerStats.hp = template.maxHp;
             _player.playerStats.mp = template.maxMp;
             _player.playerStats.maxHp = template.maxHp;
@@ -58,7 +58,6 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.playerStats.resistWeakening = template.weakeningResist;
             _player.playerStats.resistPeriodic = template.periodicResist;
             _player.playerStats.resistStun = template.stunResist;
-            Console.WriteLine("bite");
            
         }
 
