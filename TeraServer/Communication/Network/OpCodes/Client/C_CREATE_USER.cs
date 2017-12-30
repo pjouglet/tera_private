@@ -37,9 +37,10 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.name = ReadS();
             _player.details1 = ReadB(details1Length);
             _player.details2 = ReadB(details2Length);
-               
-            Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
+            _player.playerStats = new Stats();
 
+            Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
+            
             _player.playerStats.hp = template.maxHp;
             _player.playerStats.mp = template.maxMp;
             _player.playerStats.maxHp = template.maxHp;
@@ -57,12 +58,13 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.playerStats.resistWeakening = template.weakeningResist;
             _player.playerStats.resistPeriodic = template.periodicResist;
             _player.playerStats.resistStun = template.stunResist;
+            Console.WriteLine("bite");
            
         }
 
         public override void Process()
         {
-            DAOManager.PlayerDao.SaveNewPlayer(this._player, this.Connection.Account.AccountID);
+            DAOManager.PlayerDao.SaveNewPlayer(this._player, this.Connection);
             this.Connection.Account.Players =
                 DAOManager.PlayerDao.LoadAccountPlayers(this.Connection.Account.AccountID);
             S_CREATE_USER sCreateUser = new S_CREATE_USER();

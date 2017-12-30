@@ -5,7 +5,7 @@ namespace TeraServer.Configuration
 {
     public class Config
     {
-        public static bool DEBUG = true;
+        public static bool DEBUG = false;
         public static string getDatabaseHost()
         {
             string host = null;

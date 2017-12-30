@@ -9,6 +9,7 @@ namespace TeraServer.Data.Structures.Templates
     {
         public static List<Class_Template> ClassTemplates = new List<Class_Template>();
         public Player_Class classId;
+        public short startLevel;
         public int maxHp;
         public int maxMp;
         public int attackSpeed;
@@ -24,6 +25,7 @@ namespace TeraServer.Data.Structures.Templates
         public float periodicResist;
         public float stunResist;
         public int maxStamina;
+        public List<Skill_Template> SkillList = new List<Skill_Template>();
 
         public static void LoadTemplates()
         {
@@ -35,10 +37,15 @@ namespace TeraServer.Data.Structures.Templates
                 foreach (XmlNode node in nodeList)
                 {
                     Class_Template template = new Class_Template();
-                    
+
                     foreach (XmlAttribute attribute in node.Attributes)
+                    {
                         if (attribute.Name == "id")
                             template.classId = (Player_Class) Convert.ToInt32(attribute.Value);
+                        if (attribute.Name == "startLevel")
+                            template.startLevel = Convert.ToInt16(attribute.Value);
+                    }
+                        
                     
                     XmlNodeList statsList = node.SelectNodes("./stats");
                     foreach (XmlNode stats in statsList)
@@ -76,6 +83,19 @@ namespace TeraServer.Data.Structures.Templates
                             if (stat.Name == "maxStamina")
                                 template.maxStamina = Convert.ToInt32(stat.Value);
                         }
+                    }
+                    XmlNodeList skillsList = node.SelectNodes("./skills/skill");
+                    foreach (XmlNode skills in skillsList)
+                    {
+                        Skill_Template skillTemplate = new Skill_Template();
+                        foreach (XmlAttribute attribute in skills.Attributes)
+                        {
+                            if (attribute.Name == "type")
+                                skillTemplate.type = Convert.ToInt32(attribute.Value);
+                            if (attribute.Name == "id")
+                                skillTemplate.id = Convert.ToInt32(attribute.Value);
+                        }
+                        template.SkillList.Add(skillTemplate);
                     }
                     ClassTemplates.Add(template);
                 }

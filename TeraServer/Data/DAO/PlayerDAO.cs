@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using MySql.Data.MySqlClient;
+using TeraServer.Communication.Network;
 using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.Structures;
 using TeraServer.Data.Structures.Enums;
@@ -64,7 +65,7 @@ namespace TeraServer.Data.DAO
 
         public List<Player> LoadAccountPlayers(int accountId)
         {
-            string SQL = "SELECT * FROM `players` WHERE `accountid` = ?id AND `deleted` = 0";
+            string SQL = "SELECT * FROM `players` WHERE `accountid` = ?id AND `deleted` = 0 ORDER BY `lobbyPosition` ASC";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", accountId);
             MySqlDataReader reader = command.ExecuteReader();
@@ -128,12 +129,12 @@ namespace TeraServer.Data.DAO
             return false;
         }
         
-        public bool SaveNewPlayer(Player player, int accountId)
+        public bool SaveNewPlayer(Player player, Connection connection)
         {
             string SQL =
                 "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`) VALUES(?id, ?name, ?race, ?gender, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition)";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
-            command.Parameters.AddWithValue("?id", accountId);
+            command.Parameters.AddWithValue("?id", connection.Account.AccountID);
             command.Parameters.AddWithValue("?name", player.name);
             command.Parameters.AddWithValue("?race", (int)player.race);
             command.Parameters.AddWithValue("?gender", (int)player.gender);
@@ -142,7 +143,7 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?details2", Funcs.BytesToHex(player.details2));
             command.Parameters.AddWithValue("?details3", Funcs.BytesToHex(player.details3));
             command.Parameters.AddWithValue("?creationTime", Utils.Funcs.GetRoundedUtc());
-            command.Parameters.AddWithValue("?lobbyPosition", 0);
+            command.Parameters.AddWithValue("?lobbyPosition", connection.Account.Players.Count);
             try
             {
                 player.playerId = Convert.ToInt32(command.ExecuteScalar());
@@ -303,7 +304,6 @@ namespace TeraServer.Data.DAO
 
         private void loadPlayerStats(Player player)
         {
-            Console.WriteLine("ID : "+ player.playerId);
                 string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", player.playerId);
@@ -336,7 +336,6 @@ namespace TeraServer.Data.DAO
                 }
             }
             reader.Close();
-            Console.WriteLine("done");
         }
 
         private void savePlayerStats(Player player)

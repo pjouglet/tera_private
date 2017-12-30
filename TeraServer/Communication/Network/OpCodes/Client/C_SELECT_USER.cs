@@ -65,6 +65,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_INVEN sInven = new S_INVEN(this.Connection.player);
             sInven.Send(this.Connection);
             
+            S_SKILL_LIST skillList = new S_SKILL_LIST(this.Connection.player);
+            skillList.Send(this.Connection);
+            
             S_AVAILABLE_SOCIAL_LIST sAvailableSocialList = new S_AVAILABLE_SOCIAL_LIST();
             sAvailableSocialList.Send(this.Connection);
             

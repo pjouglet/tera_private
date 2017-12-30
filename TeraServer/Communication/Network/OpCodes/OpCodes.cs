@@ -142,6 +142,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_NPC_MENU_SELECT), unchecked ((short)0x51EA));        
             ServerTypes.Add(typeof(S_DIALOG), unchecked ((short)0xF215));        
             ServerTypes.Add(typeof(S_PLAYER_STAT_UPDATE), unchecked ((short)0x94DD));        
+            ServerTypes.Add(typeof(S_SKILL_LIST), unchecked ((short)0xD42C));        
             
             #endregion
         }
