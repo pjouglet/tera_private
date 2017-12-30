@@ -1,7 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TeraServer.Data.Structures
 {
+    public struct bookmark
+    {
+        public int continent;
+        public float x;
+        public float y;
+        public float z;
+        public string name;
+    }
     public class Player
     {
         public int playerId;
@@ -30,6 +39,9 @@ namespace TeraServer.Data.Structures
         public int lobbyPosition;
         public int GM;
         public byte[] accountSettings;
+        public List<bookmark> AdminBookmarks = new List<bookmark>();
+        
+        
 
         public Achievements Achievements;
 

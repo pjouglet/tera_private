@@ -163,8 +163,11 @@ namespace TeraServer.Data.DAO
 
         public void savePlayer(Player player)
         {
-            string SQL = "UPDATE `players` SET `xp` = ?xp, `restedXp` = ?restedxp, `area` = ?area, `continent` = ?continent, `level` = ?level, `title` = ?title, `lastOnline` = ?lastOnline, `worldMapGuardId` = ?guardId, `worldMapWorldId` = ?worldId, `worldMapSectionId` = ?sectionId WHERE `id` = ?id";
+            string SQL = "UPDATE `players` SET `x` = ?x, `y` = ?y, `z` = ?z, `xp` = ?xp, `restedXp` = ?restedxp, `area` = ?area, `continent` = ?continent, `level` = ?level, `title` = ?title, `lastOnline` = ?lastOnline, `worldMapGuardId` = ?guardId, `worldMapWorldId` = ?worldId, `worldMapSectionId` = ?sectionId WHERE `id` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?x", player.posX);
+            command.Parameters.AddWithValue("?y", player.posY);
+            command.Parameters.AddWithValue("?z", player.posZ);
             command.Parameters.AddWithValue("?xp", player.xp);
             command.Parameters.AddWithValue("?restedxp", player.restedXp);
             command.Parameters.AddWithValue("?area", player.areaId);
@@ -204,6 +207,55 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to save user settings " + e.Message);
                 throw;
             }
+        }
+
+        public void saveAdminBookMark(int continent, float x, float y, float z, string name, Player player)
+        {
+            string SQL =
+                "INSERT INTO `admin_bookmark`(`playerid`, `continent`, `x`, `y`, `z`, `name`) VALUES(?id, ?continent, ?x, ?y, ?z, ?name)";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", player.playerId);
+            command.Parameters.AddWithValue("?continent", continent);
+            command.Parameters.AddWithValue("?x", x);
+            command.Parameters.AddWithValue("?y", y);
+            command.Parameters.AddWithValue("?z", z);
+            command.Parameters.AddWithValue("?name", name);
+
+            try
+            {
+                Console.WriteLine("sgsqfg1");
+                command.ExecuteNonQuery();
+                Console.WriteLine("sgsqfg2");
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error when trying to save admin bookmark " + e.Message);
+            }
+        }
+
+        public void loadAdminBookmarks(Player player)
+        {
+            string SQL = "SELECT * FROM `admin_bookmark` WHERE `playerid` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", player.playerId);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    bookmark bookmark = new bookmark();
+                    bookmark.continent = (int) reader.GetValue(reader.GetOrdinal("continent"));
+                    bookmark.x = (float) reader.GetValue(reader.GetOrdinal("x"));
+                    bookmark.y = (float) reader.GetValue(reader.GetOrdinal("y"));
+                    bookmark.z = (float) reader.GetValue(reader.GetOrdinal("z"));
+                    bookmark.name = reader.GetValue(reader.GetOrdinal("name")).ToString();
+                    player.AdminBookmarks.Add(bookmark);
+                }
+                
+            }
+            reader.Close();
         }
     }
 }

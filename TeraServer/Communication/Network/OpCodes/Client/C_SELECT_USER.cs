@@ -1,6 +1,7 @@
 ﻿using System;
 using TeraServer.Communication.Network.OpCodes.Serve;
 using TeraServer.Communication.Network.OpCodes.Server;
+using TeraServer.Data.DAO;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
 {
@@ -14,7 +15,12 @@ namespace TeraServer.Communication.Network.OpCodes.Client
                 if (this.Connection.Account.Players[i].playerId == id)
                 {
                     this.Connection.player = this.Connection.Account.Players[i];
+                    break;
                 }
+            }
+            if (this.Connection.player.GM == 1)
+            {
+                DAOManager.PlayerDao.loadAdminBookmarks(this.Connection.player);
             }
         }
 

@@ -49,6 +49,12 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xE42D), typeof(C_RETURN_TO_LOBBY));
             ClientTypes.Add(unchecked ((short)0x7985), typeof(C_EXIT));
             ClientTypes.Add(unchecked ((short)0xE557), typeof(C_SAVE_CLIENT_USER_SETTING));
+            ClientTypes.Add(unchecked ((short)0x76EE), typeof(C_CHAT));
+            ClientTypes.Add(unchecked ((short)0xFD08), typeof(C_ADMIN_SPAWN_NPC));
+            ClientTypes.Add(unchecked ((short)0xA8E4), typeof(C_ADMIN_GM_TELEPORT));
+            ClientTypes.Add(unchecked ((short)0xE500), typeof(C_ADMIN_ADD_CUSTOM_BOOKMARK));
+            ClientTypes.Add(unchecked ((short)0xFBD7), typeof(C_ADMIN_REQUEST_CUSTOM_BOOKMARK));
+            ClientTypes.Add(unchecked ((short)0x9653), typeof(C_NPC_CONTACT));    
             
                     
             #endregion
@@ -130,6 +136,11 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_RETURN_TO_LOBBY), unchecked ((short)0xC3A7));         
             ServerTypes.Add(typeof(S_EXIT), unchecked ((short)0xA2D9));        
             ServerTypes.Add(typeof(S_LOAD_CLIENT_USER_SETTING), unchecked ((short)0x922D));        
+            ServerTypes.Add(typeof(S_CHAT), unchecked ((short)0x62BB));        
+            ServerTypes.Add(typeof(S_SPAWN_NPC), unchecked ((short)0xEC75));        
+            ServerTypes.Add(typeof(S_ADMIN_CUSTOM_BOOKMARK_LIST), unchecked ((short)0xFA77));        
+            ServerTypes.Add(typeof(S_NPC_MENU_SELECT), unchecked ((short)0x51EA));        
+            ServerTypes.Add(typeof(S_DIALOG), unchecked ((short)0xF215));        
             
             #endregion
         }

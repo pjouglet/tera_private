@@ -56,9 +56,14 @@
     <Compile Include="Communication\Network\Connection.cs" />
     <Compile Include="Communication\Network\OpCodes\AClientPacket.cs" />
     <Compile Include="Communication\Network\OpCodes\AServerPacket.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_ADMIN_ADD_CUSTOM_BOOKMARK.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_ADMIN_GM_TELEPORT.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_ADMIN_REQUEST_CUSTOM_BOOKMARK.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_ADMIN_SPAWN_NPC.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_AVAILABLE_EVENT_MATCHING_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CAN_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHANGE_USER_LOBBY_SLOT_ID.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_CHAT.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CHECK_VERSION.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_CREATE_USER.cs" />
@@ -71,6 +76,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_HARDWARE_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOAD_TOPO_FIN.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOGIN_ARBITER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_NPC_CONTACT.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_PLAYER_LOCATION.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REIGN_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_GUILD_PERK_LIST.cs" />
@@ -90,6 +96,7 @@
     <Compile Include="Communication\Network\OpCodes\OpCodes.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_BENEFIT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_PACKAGE_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_ADMIN_CUSTOM_BOOKMARK_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ADMIN_GM_SKILL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ARTISAN_RECIPE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ARTISAN_SKILL_LIST.cs" />
@@ -99,6 +106,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_BROCAST_GUILD_FLAG.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CAN_CREATE_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CHANGE_RELATION.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_CHAT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CHECK_USERNAME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CLEAR_QUEST_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_COMPLETED_MISSION_INFO.cs" />
@@ -107,6 +115,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_CURRENT_ELECTION_STATE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DAILY_QUEST_COMPLETE_COUNT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DELETE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_DIALOG.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_EXIT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_F2P_PremiumUser_Permission.cs" />
@@ -134,6 +143,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_MASSTIGE_STATUS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_MOVE_DISTANCE_DELTA.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_MY_DESCRIPTION.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_NPC_MENU_SELECT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ONGOING_HUNTING_EVENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ONGOING_LEVEL_EVENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PARCEL_READ_RECV_STATUS.cs" />
@@ -151,6 +161,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_SHOW_NPC_TO_MAP.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SIMPLE_TIP_REPEAT_CHECK.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_ME.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_NPC.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_TRADE_BROKER_HIGHEST_ITEM_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_ACHIEVEMENT_PROGRESS.cs" />
