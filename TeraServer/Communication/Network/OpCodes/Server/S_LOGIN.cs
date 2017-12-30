@@ -32,7 +32,12 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             WriteInt32(writer, this._player.model);
             WriteSpawnId(writer, this._player, true);
             WriteInt32(writer, 0);
-            WriteByte(writer, 1);//alive
+            
+            if(_player.playerStats.hp <= 0)
+                WriteByte(writer, 0);//dead
+            else
+                WriteByte(writer, 1);//alive
+            
             WriteInt32(writer, 0);
             WriteInt32(writer, this._player.playerStats.walkSpeed);
             WriteInt32(writer, this._player.playerStats.runSpeed);

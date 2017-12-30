@@ -60,9 +60,9 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 
                 
                 WriteInt32(writer, player.playerId);
-                WriteInt32(writer, player.gender);
-                WriteInt32(writer, player.race);
-                WriteInt32(writer, player.classId);
+                WriteInt32(writer, (int)player.gender);
+                WriteInt32(writer, (int)player.race);
+                WriteInt32(writer, (int)player.classId);
                 WriteInt32(writer, player.level);
                 WriteInt32(writer, 6);//hp
                 WriteInt32(writer, 1231);//mp

@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using TeraServer.Communication.Network;
 using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.Structures;
+using TeraServer.Data.Structures.Enums;
 using TeraServer.Utils;
 
 namespace TeraServer.Data.DAO
@@ -17,6 +18,27 @@ namespace TeraServer.Data.DAO
     {
         private MySqlConnection _mySqlConnection;
         public static Thread UpdatePlayerThread = new Thread(upDatePlayersThread);
+        
+        public static void upDatePlayersThread()
+        {
+            while (true)
+            {
+                for (int i = 0; i < Communication.Network.Connection.Connections.Count; i++)
+                {
+                    if (Communication.Network.Connection.Connections[i].player != null)
+                    {
+                        Player player = Communication.Network.Connection.Connections[i].player;
+                        if (player.playerStats.hp > 0)
+                        {
+                            player.updateStats();
+                            S_PLAYER_STAT_UPDATE sPlayerStatUpdate = new S_PLAYER_STAT_UPDATE(player);
+                            sPlayerStatUpdate.Send(Communication.Network.Connection.Connections[i]);
+                        }
+                    }
+                }
+                Thread.Sleep(3000);
+            }
+        }
         
         public PlayerDAO(string str) : base(str)
         {
@@ -62,9 +84,9 @@ namespace TeraServer.Data.DAO
                     player.posY = (float) reader.GetValue(reader.GetOrdinal("y"));
                     player.posZ = (float) reader.GetValue(reader.GetOrdinal("z"));
                     player.heading = (int) reader.GetValue(reader.GetOrdinal("h"));
-                    player.gender = (int) reader.GetValue(reader.GetOrdinal("gender"));
-                    player.race = (int) reader.GetValue(reader.GetOrdinal("race"));
-                    player.classId = (int) reader.GetValue(reader.GetOrdinal("class"));
+                    player.gender = (Player_Gender) reader.GetValue(reader.GetOrdinal("gender"));
+                    player.race = (Player_Race) reader.GetValue(reader.GetOrdinal("race"));
+                    player.classId = (Player_Class) reader.GetValue(reader.GetOrdinal("class"));
                     player.xp = (int) reader.GetValue(reader.GetOrdinal("xp"));
                     player.restedXp = (int) reader.GetValue(reader.GetOrdinal("restedXp"));
                     player.areaId = (int) reader.GetValue(reader.GetOrdinal("area"));
@@ -96,6 +118,8 @@ namespace TeraServer.Data.DAO
                 }
             }
             reader.Close();
+            for (int i = 0; i < players.Count; i++)
+                loadPlayerStats(players[i]);
             return players;
         }
 
@@ -121,9 +145,9 @@ namespace TeraServer.Data.DAO
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", accountId);
             command.Parameters.AddWithValue("?name", player.name);
-            command.Parameters.AddWithValue("?race", player.race);
-            command.Parameters.AddWithValue("?gender", player.gender);
-            command.Parameters.AddWithValue("?class", player.classId);
+            command.Parameters.AddWithValue("?race", (int)player.race);
+            command.Parameters.AddWithValue("?gender", (int)player.gender);
+            command.Parameters.AddWithValue("?class", (int)player.classId);
             command.Parameters.AddWithValue("?details1", Funcs.BytesToHex(player.details1));
             command.Parameters.AddWithValue("?details2", Funcs.BytesToHex(player.details2));
             command.Parameters.AddWithValue("?details3", Funcs.BytesToHex(player.details3));
@@ -200,6 +224,7 @@ namespace TeraServer.Data.DAO
             {
                 Console.WriteLine("Error when trying to save player :" + ex.Message);
             }
+            savePlayerStats(player);
             
         }
 
@@ -270,21 +295,39 @@ namespace TeraServer.Data.DAO
             reader.Close();
         }
 
-        public static void upDatePlayersThread()
+        private void loadPlayerStats(Player player)
         {
-            while (true)
+            string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", player.playerId);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
             {
-                for (int i = 0; i < Communication.Network.Connection.Connections.Count; i++)
+                while (reader.Read())
                 {
-                    if (Communication.Network.Connection.Connections[i].player != null)
-                    {
-                        Player player = Communication.Network.Connection.Connections[i].player;
-                        player.updateStats();
-                        S_PLAYER_STAT_UPDATE sPlayerStatUpdate = new S_PLAYER_STAT_UPDATE(player);
-                        sPlayerStatUpdate.Send(Communication.Network.Connection.Connections[i]);
-                    }
+                    player.playerStats.hp = (int)reader.GetValue(reader.GetOrdinal("hp"));
+                    player.playerStats.mp = (int)reader.GetValue(reader.GetOrdinal("mp"));
                 }
-                Thread.Sleep(3000);
+            }
+            reader.Close();
+        }
+
+        private void savePlayerStats(Player player)
+        {
+            string SQL = "UPDATE `player_stats` SET `hp` = ?hp, `mp` = ?mp WHERE `playerid` = ?id";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?hp", player.playerStats.hp);
+            command.Parameters.AddWithValue("?mp", player.playerStats.mp);
+            command.Parameters.AddWithValue("?id", player.playerId);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error when trying to save player stats "+ e.Message);
+                throw;
             }
         }
     }

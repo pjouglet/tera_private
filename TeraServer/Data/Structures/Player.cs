@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TeraServer.Data.Structures.Enums;
 
 namespace TeraServer.Data.Structures
 {
@@ -19,9 +20,9 @@ namespace TeraServer.Data.Structures
         public float posY;
         public float posZ;
         public int heading;
-        public int race;
-        public int gender;
-        public int classId;
+        public Player_Race race;
+        public Player_Gender gender;
+        public Player_Class classId;
         public int xp;
         public int restedXp;
         public int areaId;
@@ -48,7 +49,7 @@ namespace TeraServer.Data.Structures
 
         public int model
         {
-            get { return 10101 + 200 * race + 100 * gender + classId; }
+            get { return 10101 + 200 * (int)race + 100 * (int)gender + (int)classId; }
         }
 
         public void Release()

@@ -22,6 +22,7 @@ namespace TeraServer.Communication
 
                 Connection.SendAllThread.Start();
                 
+                Levels.LoadLevels();
                 Console.WriteLine("Loading Achievements...");
                 Achievements.LoadAchievementsFromFile();
                 Console.WriteLine("Loaded " + Achievements.achievementList.Count + " achievements");

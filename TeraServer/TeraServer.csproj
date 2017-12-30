@@ -188,6 +188,9 @@
     <Compile Include="Data\Interfaces\IConnection.cs" />
     <Compile Include="Data\Structures\Account.cs" />
     <Compile Include="Data\Structures\Achievements.cs" />
+    <Compile Include="Data\Structures\Enums\Player_Class.cs" />
+    <Compile Include="Data\Structures\Enums\Player_Gender.cs" />
+    <Compile Include="Data\Structures\Enums\Player_Race.cs" />
     <Compile Include="Data\Structures\Levels.cs" />
     <Compile Include="Data\Structures\Player.cs" />
     <Compile Include="Data\Structures\Stats.cs" />
