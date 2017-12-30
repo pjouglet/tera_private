@@ -24,7 +24,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, _player.playerStats.endurance);
             WriteInt32(writer, _player.playerStats.impactFactor);
             WriteInt32(writer, _player.playerStats.balanceFactor);
-            WriteInt16(writer, _player.playerStats.runSpeed);
+            WriteInt16(writer, _player.playerStats.movementSpeed);
             WriteInt16(writer, _player.playerStats.walkSpeed);
             WriteInt16(writer, _player.playerStats.attackSpeed);
             WriteFloat(writer, _player.playerStats.critRate);

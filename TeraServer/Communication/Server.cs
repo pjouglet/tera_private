@@ -5,6 +5,7 @@ using TeraServer.Communication.Network.OpCodes;
 using TeraServer.Configuration;
 using TeraServer.Data.DAO;
 using TeraServer.Data.Structures;
+using TeraServer.Data.Structures.Templates;
 
 namespace TeraServer.Communication
 {
@@ -23,6 +24,11 @@ namespace TeraServer.Communication
                 Connection.SendAllThread.Start();
                 
                 Levels.LoadLevels();
+                
+                Console.WriteLine("Loading templates...");
+                Class_Template.LoadTemplates();
+                Console.WriteLine("Loaded " + Class_Template.ClassTemplates.Count + " templates");
+                
                 Console.WriteLine("Loading Achievements...");
                 Achievements.LoadAchievementsFromFile();
                 Console.WriteLine("Loaded " + Achievements.achievementList.Count + " achievements");

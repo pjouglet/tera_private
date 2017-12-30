@@ -10,7 +10,7 @@
         public int endurance;
         public int impactFactor;
         public int balanceFactor;
-        public short runSpeed;
+        public short movementSpeed;
         public short walkSpeed;
         public short attackSpeed;
         public float critRate;

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 using System.Threading;
 using MySql.Data.MySqlClient;
-using TeraServer.Communication.Network;
 using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.Structures;
 using TeraServer.Data.Structures.Enums;
+using TeraServer.Data.Structures.Templates;
 using TeraServer.Utils;
 
 namespace TeraServer.Data.DAO
@@ -106,13 +103,6 @@ namespace TeraServer.Data.DAO
                     player.accountSettings = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("accountSettings")).ToString());
                     player.Achievements = new Achievements();
                     player.playerStats = new Stats();
-                    
-                    //todo load stats
-                    player.playerStats.runSpeed = 150;
-                    player.playerStats.walkSpeed = 52;
-                    player.playerStats.maxHp = 40000;
-                    player.playerStats.maxMp = 30000;
-                    player.playerStats.staminaMax = 2000;
                     players.Add(player);
 
                 }
@@ -155,12 +145,28 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?lobbyPosition", 0);
             try
             {
+                player.playerId = Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save new character " + ex.Message);
+            }
+
+            SQL = "INSERT INTO `player_stats`(`playerid`, `hp`, `mp`, `stamina`) VALUES(?id, ?hp, ?mp, ?stamina)";
+            command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", player.playerId);
+            command.Parameters.AddWithValue("?hp", player.playerStats.hp);
+            command.Parameters.AddWithValue("?mp", player.playerStats.mp);
+            command.Parameters.AddWithValue("?stamina", player.playerStats.stamina);
+            
+            try
+            {
                 command.ExecuteNonQuery();
                 return true;
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error when trying to save new character " + ex.Message);
+                Console.WriteLine("Error when trying to save stats of new character " + ex.Message);
             }
             return false;
         }
@@ -297,7 +303,8 @@ namespace TeraServer.Data.DAO
 
         private void loadPlayerStats(Player player)
         {
-            string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
+            Console.WriteLine("ID : "+ player.playerId);
+                string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", player.playerId);
             MySqlDataReader reader = command.ExecuteReader();
@@ -307,17 +314,38 @@ namespace TeraServer.Data.DAO
                 {
                     player.playerStats.hp = (int)reader.GetValue(reader.GetOrdinal("hp"));
                     player.playerStats.mp = (int)reader.GetValue(reader.GetOrdinal("mp"));
+                    player.playerStats.stamina = (int)reader.GetValue(reader.GetOrdinal("stamina"));
+                        
+                    Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(player.classId)];
+                    
+                    player.playerStats.maxHp = template.maxHp;
+                    player.playerStats.maxMp = template.maxMp;
+                    player.playerStats.walkSpeed = template.walkSpeed;
+                    player.playerStats.movementSpeed = template.movementSpeed;
+                    player.playerStats.critRate = template.critRate;
+                    player.playerStats.critResist = template.critResist;
+                    player.playerStats.critPower = template.critPower;
+                    player.playerStats.staminaMax = template.maxStamina;
+                    
+                    //stun rate
+                    //periodic rate
+                    //weakening rate
+                    player.playerStats.resistWeakening = template.weakeningResist;
+                    player.playerStats.resistPeriodic = template.periodicResist;
+                    player.playerStats.resistStun = template.stunResist;
                 }
             }
             reader.Close();
+            Console.WriteLine("done");
         }
 
         private void savePlayerStats(Player player)
         {
-            string SQL = "UPDATE `player_stats` SET `hp` = ?hp, `mp` = ?mp WHERE `playerid` = ?id";
+            string SQL = "UPDATE `player_stats` SET `hp` = ?hp, `mp` = ?mp, `stamina` = ?stamina WHERE `playerid` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?hp", player.playerStats.hp);
             command.Parameters.AddWithValue("?mp", player.playerStats.mp);
+            command.Parameters.AddWithValue("?stamina", player.playerStats.stamina);
             command.Parameters.AddWithValue("?id", player.playerId);
 
             try

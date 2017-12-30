@@ -40,7 +40,7 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             
             WriteInt32(writer, 0);
             WriteInt32(writer, this._player.playerStats.walkSpeed);
-            WriteInt32(writer, this._player.playerStats.runSpeed);
+            WriteInt32(writer, this._player.playerStats.movementSpeed);
             WriteBytes(writer, _player.details3);
             WriteByte(writer, 1);
             WriteByte(writer, 0);

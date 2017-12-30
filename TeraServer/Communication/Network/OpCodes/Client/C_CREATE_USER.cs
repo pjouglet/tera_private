@@ -4,6 +4,7 @@ using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.DAO;
 using TeraServer.Data.Structures;
 using TeraServer.Data.Structures.Enums;
+using TeraServer.Data.Structures.Templates;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
 {
@@ -36,6 +37,27 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.name = ReadS();
             _player.details1 = ReadB(details1Length);
             _player.details2 = ReadB(details2Length);
+               
+            Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
+
+            _player.playerStats.hp = template.maxHp;
+            _player.playerStats.mp = template.maxMp;
+            _player.playerStats.maxHp = template.maxHp;
+            _player.playerStats.maxMp = template.maxMp;
+            _player.playerStats.walkSpeed = template.walkSpeed;
+            _player.playerStats.movementSpeed = template.movementSpeed;
+            _player.playerStats.critRate = template.critRate;
+            _player.playerStats.critResist = template.critResist;
+            _player.playerStats.critPower = template.critPower;
+            _player.playerStats.staminaMax = template.maxStamina;
+            _player.playerStats.stamina = template.maxStamina;
+            //stun rate
+            //periodic rate
+            //weakening rate
+            _player.playerStats.resistWeakening = template.weakeningResist;
+            _player.playerStats.resistPeriodic = template.periodicResist;
+            _player.playerStats.resistStun = template.stunResist;
+           
         }
 
         public override void Process()
