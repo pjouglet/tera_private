@@ -7,7 +7,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
     {
         public override void Read()
         {
-            Console.WriteLine("received");
+            
         }
 
         public override void Process()

@@ -16,21 +16,21 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         
         public override void Write(BinaryWriter writer)
         {
-            Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
-            WriteInt16(writer, (short) template.SkillList.Count);
+            
+            WriteInt16(writer, (short) _player.learnedSkills.Count);
             short next = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
             
-            for (int i = 0; i < template.SkillList.Count; i++)
+            for (int i = 0; i < _player.learnedSkills.Count; i++)
             {
                 writetoPos(writer, next, (short) writer.BaseStream.Position);
                 WriteInt16(writer, (short) writer.BaseStream.Position);
                 next = (short) writer.BaseStream.Position;
                 WriteInt16(writer, 0);
-                WriteInt32(writer, template.SkillList[i].id);
-                if(template.SkillList[i].type == 1)
+                WriteInt32(writer, _player.learnedSkills[i].id);
+                if(_player.learnedSkills[i].type == 1)
                     WriteByte(writer, 1);
-                else if(template.SkillList[i].type == 0)
+                else if(_player.learnedSkills[i].type == 0)
                     WriteByte(writer, 0);
             }
         }

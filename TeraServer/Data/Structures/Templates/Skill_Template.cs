@@ -14,6 +14,7 @@ namespace TeraServer.Data.Structures.Templates
         public int type;
         public int cost;
         public string learnType;
+        public int overridePreviousSkill;
         public List<int> preSkill = new List<int>();
         public List<int> preActive = new List<int>();
         public List<int> prePassive = new List<int>();
@@ -51,6 +52,8 @@ namespace TeraServer.Data.Structures.Templates
                                 template.cost = Convert.ToInt32(attribute.Value);
                             if (attribute.Name == "learnType")
                                 template.learnType = attribute.Value;
+                            if (attribute.Name == "previousOverride")
+                                template.overridePreviousSkill = Convert.ToInt32(attribute.Value);
                         }
                         
                         XmlNodeList preActive = skill.SelectNodes("./preactive");

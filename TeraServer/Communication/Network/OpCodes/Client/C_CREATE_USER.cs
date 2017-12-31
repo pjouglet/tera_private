@@ -58,7 +58,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             _player.playerStats.resistWeakening = template.weakeningResist;
             _player.playerStats.resistPeriodic = template.periodicResist;
             _player.playerStats.resistStun = template.stunResist;
-           
+
+            Class_Template classTemplate = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
+            _player.learnedSkills = classTemplate.SkillList;
         }
 
         public override void Process()

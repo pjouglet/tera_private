@@ -110,7 +110,10 @@ namespace TeraServer.Data.DAO
             }
             reader.Close();
             for (int i = 0; i < players.Count; i++)
+            {
                 loadPlayerStats(players[i]);
+                loadPlayerSkills(players[i]);
+            }
             return players;
         }
 
@@ -137,6 +140,7 @@ namespace TeraServer.Data.DAO
         
         public bool SaveNewPlayer(Player player, Connection connection)
         {
+            #region save_player
             string SQL =
                 "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `level`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`) VALUES(?id, ?name, ?race, ?gender, ?level, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition)";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
@@ -169,7 +173,8 @@ namespace TeraServer.Data.DAO
             {
                 Console.WriteLine("Error when trying to save new character " + ex.Message);
             }
-
+            #endregion
+            #region save_stats
             SQL = "INSERT INTO `player_stats`(`playerid`, `hp`, `mp`, `stamina`) VALUES(?id, ?hp, ?mp, ?stamina)";
             command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", player.playerId);
@@ -180,13 +185,36 @@ namespace TeraServer.Data.DAO
             try
             {
                 command.ExecuteNonQuery();
-                return true;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("Error when trying to save stats of new character " + ex.Message);
             }
+            #endregion
+            
+            #region save_skills
+
+            SQL = "INSERT INTO `players_skills`(`playerid`, `skillid`) VALUES(?id, ?skill)";
+            try
+            {
+                for (int i = 0; i < player.learnedSkills.Count; i++)
+                {
+                    command = new MySqlCommand(SQL, this._mySqlConnection);
+                    command.Parameters.AddWithValue("?id", player.playerId);
+                    command.Parameters.AddWithValue("?skill", player.learnedSkills[i].id);
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save skills of new character " + ex.Message);
+            }
+       
+            #endregion
+            
             return false;
+
         }
 
         public void DeletePlayer(int playerId)
@@ -249,6 +277,7 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to save player :" + ex.Message);
             }
             savePlayerStats(player);
+            savePlayerSkills(player);
             
         }
 
@@ -372,6 +401,42 @@ namespace TeraServer.Data.DAO
             {
                 Console.WriteLine("Error when trying to save player stats "+ e.Message);
                 throw;
+            }
+        }
+
+        private void loadPlayerSkills(Player player)
+        {
+            string SQL = "SELECT `skillid` FROM `players_skills` WHERE `playerid` = ?id ORDER BY id ASC";
+            MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+            command.Parameters.AddWithValue("?id", player.playerId);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    player.learnSkill(Convert.ToInt32(reader.GetValue(reader.GetOrdinal("skillid"))));
+                }
+            }
+            reader.Close();
+        }
+
+        public void savePlayerSkills(Player player)
+        {
+            string SQL = "INSERT INTO `players_skills`(`playerid`, `skillid`) VALUES(?id, ?skill) ON DUPLICATE KEY UPDATE `skillid` = `skillid`";
+            try
+            {
+                for (int i = 0; i < player.learnedSkills.Count; i++)
+                {
+                    MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+                    command.Parameters.AddWithValue("?id", player.playerId);
+                    command.Parameters.AddWithValue("?skill", player.learnedSkills[i].id);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save skills " + ex.Message);
             }
         }
     }

@@ -90,6 +90,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_SET_VISIBLE_RANGE.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SIMPLE_TIP_REPEAT_CHECK.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SKILL_LEARN_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_SKILL_LEARN_REQUEST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_TRADE_BROKER_HIGHEST_ITEM_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_UPDATE_CONTENTS_PLAYTIME.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_SHOW_NPC_TO_MAP.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SIMPLE_TIP_REPEAT_CHECK.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LEARN_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LEARN_RESULT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_ME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_NPC.cs" />

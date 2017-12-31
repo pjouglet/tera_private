@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TeraServer.Data.Structures.Enums;
+using TeraServer.Data.Structures.Templates;
 
 namespace TeraServer.Data.Structures
 {
@@ -42,6 +43,7 @@ namespace TeraServer.Data.Structures
         public byte[] accountSettings;
         public List<bookmark> AdminBookmarks = new List<bookmark>();
         public Stats playerStats;
+        public List<Skill_Template> learnedSkills = new List<Skill_Template>();
         
         
 
@@ -77,6 +79,37 @@ namespace TeraServer.Data.Structures
                 else
                     this.playerStats.stamina += 100;
             
+        }
+
+        public bool learnSkill(int skillId)
+        {
+            Skill_Template template = Skill_Template.getTemplateById(skillId);
+            if (learnedSkills.Contains(template))
+                return false;
+
+
+            bool canLearn = true;
+            for (int i = 0; i < template.preSkill.Count; i++)
+            {
+                Skill_Template pre = Skill_Template.getTemplateById(template.preSkill[i]);
+                if (!learnedSkills.Contains(pre))
+                    canLearn = false;
+            }
+
+            if (canLearn)
+            {
+                if (template.overridePreviousSkill == 1)
+                {
+                    for (int i = 0; i < template.preSkill.Count; i++)
+                    {
+                        Skill_Template pre = Skill_Template.getTemplateById(template.preSkill[i]);
+                        if (learnedSkills.Contains(pre))
+                            learnedSkills.Remove(pre);
+                    }
+                }
+                learnedSkills.Add(template);
+            }
+            return true;
         }
         
     }
