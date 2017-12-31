@@ -61,6 +61,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
 
             Class_Template classTemplate = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
             _player.learnedSkills = classTemplate.SkillList;
+            Race_Template raceTemplate = Race_Template.RaceTemplates[Convert.ToInt32(_player.race)];
+            for (int i = 0; i < raceTemplate.baseRaceSkills.Count; i++)
+                _player.learnedSkills.Add(raceTemplate.baseRaceSkills[i]);
         }
 
         public override void Process()
