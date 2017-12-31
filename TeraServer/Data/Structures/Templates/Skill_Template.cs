@@ -96,7 +96,7 @@ namespace TeraServer.Data.Structures.Templates
             List<Skill_Template> list = new List<Skill_Template>();
             for (int i = 0; i < SkillTemplates.Count; i++)
             {
-                if(SkillTemplates[i].PlayerClass == classId)
+                if(SkillTemplates[i].PlayerClass == classId || SkillTemplates[i].PlayerClass == Player_Class.COMMON)
                     list.Add(SkillTemplates[i]);
             }
             return list;

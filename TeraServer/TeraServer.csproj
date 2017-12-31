@@ -201,6 +201,7 @@
     <Compile Include="Data\Structures\Player.cs" />
     <Compile Include="Data\Structures\Stats.cs" />
     <Compile Include="Data\Structures\Templates\Class_Template.cs" />
+    <Compile Include="Data\Structures\Templates\Race_Template.cs" />
     <Compile Include="Data\Structures\Templates\Skill_Template.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

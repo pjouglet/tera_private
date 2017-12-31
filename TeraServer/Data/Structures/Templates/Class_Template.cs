@@ -107,6 +107,7 @@ namespace TeraServer.Data.Structures.Templates
             {
                  Console.WriteLine("Error when trying to load class templates file !" + ex.Message);   
             }
+            
         }
     }
 }

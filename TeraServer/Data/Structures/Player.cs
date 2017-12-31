@@ -84,32 +84,40 @@ namespace TeraServer.Data.Structures
         public bool learnSkill(int skillId)
         {
             Skill_Template template = Skill_Template.getTemplateById(skillId);
-            if (learnedSkills.Contains(template))
-                return false;
-
-
-            bool canLearn = true;
-            for (int i = 0; i < template.preSkill.Count; i++)
+            Class_Template classTemplate = Class_Template.ClassTemplates[Convert.ToInt32(classId)];
+            for (int x = 0; x < classTemplate.SkillLearnList.Count; x++)
             {
-                Skill_Template pre = Skill_Template.getTemplateById(template.preSkill[i]);
-                if (!learnedSkills.Contains(pre))
-                    canLearn = false;
-            }
-
-            if (canLearn)
-            {
-                if (template.overridePreviousSkill == 1)
+                if (classTemplate.SkillLearnList[x].id == template.id)
                 {
+                    if (learnedSkills.Contains(template))
+                        return false;
+
+
+                    bool canLearn = true;
                     for (int i = 0; i < template.preSkill.Count; i++)
                     {
                         Skill_Template pre = Skill_Template.getTemplateById(template.preSkill[i]);
-                        if (learnedSkills.Contains(pre))
-                            learnedSkills.Remove(pre);
+                        if (!learnedSkills.Contains(pre))
+                            canLearn = false;
                     }
+
+                    if (canLearn)
+                    {
+                        if (template.overridePreviousSkill == 1)
+                        {
+                            for (int i = 0; i < template.preSkill.Count; i++)
+                            {
+                                Skill_Template pre = Skill_Template.getTemplateById(template.preSkill[i]);
+                                if (learnedSkills.Contains(pre))
+                                    learnedSkills.Remove(pre);
+                            }
+                        }
+                        learnedSkills.Add(template);
+                    }
+                    return true;
                 }
-                learnedSkills.Add(template);
             }
-            return true;
+            return false;
         }
         
     }

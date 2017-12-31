@@ -31,7 +31,8 @@ namespace TeraServer.Communication
                 
                 Console.WriteLine("Loading templates...");
                 Class_Template.LoadTemplates();
-                Console.WriteLine("Loaded " + Class_Template.ClassTemplates.Count + " templates");
+                Race_Template.LoadTemplates();
+                Console.WriteLine("Loaded " + (Class_Template.ClassTemplates.Count + Race_Template.RaceTemplates.Count) + " templates");
                 
                 Console.WriteLine("Loading Achievements...");
                 Achievements.LoadAchievementsFromFile();
