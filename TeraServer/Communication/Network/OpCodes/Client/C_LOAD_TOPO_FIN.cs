@@ -70,6 +70,12 @@ namespace TeraServer.Communication.Network.OpCodes.Client
                 S_CHANGE_RELATION sChangeRelation = new S_CHANGE_RELATION(this.Connection.player, 26);
                 sChangeRelation.Send(this.Connection);
             }
+
+            if (this.Connection.Account.accountPackages.Contains(1000))
+            {
+                S_SHOW_PCBANG_ICON sShowPcbangIcon= new S_SHOW_PCBANG_ICON(1, this.Connection.player);
+                sShowPcbangIcon.Send(this.Connection);
+            }
             
         }
     }

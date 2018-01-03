@@ -6,7 +6,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
     {
         public override void Write(BinaryWriter writer)
         {
-            WriteLong(writer, Utils.Funcs.GetCurrentMilliseconds());
+            WriteLong(writer, Utils.Funcs.GetRoundedUtc());
         }
     }
 }

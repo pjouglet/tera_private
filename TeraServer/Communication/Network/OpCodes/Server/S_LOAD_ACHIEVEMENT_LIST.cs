@@ -52,7 +52,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 {
                     WriteInt32(writer, i);
                     WriteInt32(writer, 5);
-                    WriteLong(writer, Utils.Funcs.GetCurrentMilliseconds());
+                    WriteLong(writer, Utils.Funcs.GetRoundedUtc());
                 }
             }
             

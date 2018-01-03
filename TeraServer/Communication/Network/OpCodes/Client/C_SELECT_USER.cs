@@ -125,7 +125,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST(this.Connection.Account);
             sAccountBenefitList.Send(this.Connection);
             
-            S_SEND_USER_PLAY_TIME sSendUserPlayTime = new S_SEND_USER_PLAY_TIME();
+            S_SEND_USER_PLAY_TIME sSendUserPlayTime = new S_SEND_USER_PLAY_TIME(this.Connection.player);
             sSendUserPlayTime.Send(this.Connection);
             
             S_UPDATE_NPCGUILD sUpdateNpcguild = new S_UPDATE_NPCGUILD(this.Connection.player);

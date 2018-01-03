@@ -94,8 +94,8 @@ namespace TeraServer.Data.DAO
                     player.details1 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details1")).ToString());
                     player.details2 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details2")).ToString());
                     player.details3 = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("details3")).ToString());
-                    //player.lastOnline = (long) reader.GetValue(reader.GetOrdinal("lastOnline"));
-                    //player.creationTime = (long) reader.GetValue(reader.GetOrdinal("creationTime"));
+                    player.lastOnline = (int) reader.GetValue(reader.GetOrdinal("lastOnline"));
+                    player.creationTime = (int) reader.GetValue(reader.GetOrdinal("creationTime"));
                     player.worldMapGuardId = (int) reader.GetValue(reader.GetOrdinal("worldMapGuardId"));
                     player.worldMapWorldId = (int) reader.GetValue(reader.GetOrdinal("worldMapWorldId"));
                     player.worldMapSectionId = (int) reader.GetValue(reader.GetOrdinal("worldMapSectionId"));
@@ -262,7 +262,7 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?continent", player.continentId);
             command.Parameters.AddWithValue("?level", player.level);
             command.Parameters.AddWithValue("?title", player.title);
-            command.Parameters.AddWithValue("?lastOnline", (int)Utils.Funcs.GetCurrentMilliseconds());
+            command.Parameters.AddWithValue("?lastOnline", Utils.Funcs.GetRoundedUtc());
             command.Parameters.AddWithValue("?guardId", player.worldMapGuardId);
             command.Parameters.AddWithValue("?worldId", player.worldMapWorldId);
             command.Parameters.AddWithValue("?sectionId", player.worldMapSectionId);

@@ -21,8 +21,8 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, this._account.vipCredits);
             WriteInt32(writer, 0);
             WriteByte(writer, 1);
-            WriteDouble(writer, Utils.Funcs.GetCurrentMilliseconds());
-            WriteDouble(writer, Utils.Funcs.GetCurrentMilliseconds());
+            WriteDouble(writer, Utils.Funcs.GetRoundedUtc());
+            WriteDouble(writer, Utils.Funcs.GetRoundedUtc());
             WriteByte(writer, 1);
             writetoPos(writer, next, (short)writer.BaseStream.Position);
             WriteInt16(writer, 0);
