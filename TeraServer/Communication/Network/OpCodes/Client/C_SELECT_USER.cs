@@ -37,10 +37,10 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff3 = new S_UPDATE_CONTENTS_ON_OFF(4);
             sUpdateContentsOnOff3.Send(this.Connection);
             
-            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff4 = new S_UPDATE_CONTENTS_ON_OFF(8);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff4 = new S_UPDATE_CONTENTS_ON_OFF(8, 1);
             sUpdateContentsOnOff4.Send(this.Connection);
             
-            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff5 = new S_UPDATE_CONTENTS_ON_OFF(9);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff5 = new S_UPDATE_CONTENTS_ON_OFF(9, 1);
             sUpdateContentsOnOff5.Send(this.Connection);
             
             S_BROCAST_GUILD_FLAG sBrocastGuildFlag = new S_BROCAST_GUILD_FLAG();

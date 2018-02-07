@@ -11,7 +11,9 @@ using TeraServer.Utils;
 using System.Net.NetworkInformation;
 using System.Threading;
 using Hik.Communication.Scs.Communication;
+using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Configuration;
+using TeraServer.Data.DAO;
 using TeraServer.Data.Structures;
 
 namespace TeraServer.Communication.Network
@@ -115,7 +117,12 @@ namespace TeraServer.Communication.Network
 
         private void onClientDisconnected(object sender, EventArgs args)
         {
-            
+            if (this.player != null)
+            {
+                S_DESPAWN_USER sDespawnUser = new S_DESPAWN_USER(player, 1);
+                this.broadcastToOther(sDespawnUser);
+                DAOManager.PlayerDao.savePlayer(this.player);
+            }
         }
 
         private bool Send()
