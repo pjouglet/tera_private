@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using TeraServer.Communication.Network;
+using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.Structures.Enums;
 using TeraServer.Data.Structures.Templates;
 
@@ -13,7 +16,7 @@ namespace TeraServer.Data.Structures
         public float z;
         public string name;
     }
-    public class Player
+    public class Player : Uid
     {
         public int playerId;
         public string name = String.Empty;
@@ -57,6 +60,7 @@ namespace TeraServer.Data.Structures
         public void Release()
         {
             //todo do release
+            base.Release();
         }
 
         public void updateStats()
@@ -118,6 +122,18 @@ namespace TeraServer.Data.Structures
                 }
             }
             return false;
+        }
+
+        public void startSkill(int skillId, Connection connection)
+        {
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                Thread.Sleep(750);
+                S_ACTION_END sActionEnd = new S_ACTION_END(this, this.posX, this.posY, this.posZ, (short) this.heading,
+                    skillId, 0);
+                sActionEnd.Send(connection);
+                Thread.Sleep(750);
+            });
         }
         
     }

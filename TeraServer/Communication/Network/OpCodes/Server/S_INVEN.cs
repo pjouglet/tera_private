@@ -19,7 +19,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt16(writer, 0);
             
             writeWorldId(writer, this._player);
-            WriteLong(writer, 2000);
+            WriteLong(writer, 200000000);
             WriteByte(writer, 1);
             WriteByte(writer, 1);
             WriteByte(writer, 0);

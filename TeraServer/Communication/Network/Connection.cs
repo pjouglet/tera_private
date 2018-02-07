@@ -50,6 +50,26 @@ namespace TeraServer.Communication.Network
                 Thread.Sleep(10);
             }
         }
+
+        public static void broadcast(AServerPacket packet)
+        {
+            foreach (Connection con in Connections)
+            {
+                if(con.player != null)
+                    packet.Send(con);
+            }    
+        }
+
+        public void broadcastToOther(AServerPacket packet)
+        {
+            foreach (Connection con in Connections)
+            {
+                if(con != this && con.player != null)
+                    packet.Send(con);
+            }
+
+        }
+        
         public Account Account
         {
             get { return _account; }

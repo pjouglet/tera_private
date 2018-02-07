@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using TeraServer.Data.Structures;
 
-namespace TeraServer.Communication.Network.OpCodes.Serve
+namespace TeraServer.Communication.Network.OpCodes.Server
 {
     public class S_LOGIN : AServerPacket
     {
@@ -52,7 +52,7 @@ namespace TeraServer.Communication.Network.OpCodes.Serve
             WriteInt16(writer, 1);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);//playerKills
-            WriteLong(writer, totalXp);//total xp
+            WriteLong(writer, Levels.levelList[_player.level - 1]);//total xp
             WriteLong(writer, _player.xp);
             WriteLong(writer, Levels.levelList[_player.level] - _player.xp);//next level xp
             WriteInt32(writer, 0);            

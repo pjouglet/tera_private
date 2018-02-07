@@ -97,8 +97,11 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_UPDATE_CONTENTS_PLAYTIME.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_WATCHED_MOVIES.cs" />
     <Compile Include="Communication\Network\OpCodes\OpCodes.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_ABNORMALITY_BEGIN.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_BENEFIT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ACCOUNT_PACKAGE_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_ACTION_END.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_ACTION_STAGE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ADMIN_CUSTOM_BOOKMARK_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ADMIN_GM_SKILL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ARTISAN_RECIPE_LIST.cs" />
@@ -118,6 +121,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_CURRENT_ELECTION_STATE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DAILY_QUEST_COMPLETE_COUNT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DELETE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_DESPAWN_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DIALOG.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_EXIT.cs" />
@@ -170,6 +174,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_ME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_NPC.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_USER.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_TRADE_BROKER_HIGHEST_ITEM_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_UPDATE_ACHIEVEMENT_PROGRESS.cs" />
@@ -196,15 +201,19 @@
     <Compile Include="Data\Interfaces\IConnection.cs" />
     <Compile Include="Data\Structures\Account.cs" />
     <Compile Include="Data\Structures\Achievements.cs" />
+    <Compile Include="Data\Structures\Enums\ObjectFamily.cs" />
     <Compile Include="Data\Structures\Enums\Player_Class.cs" />
     <Compile Include="Data\Structures\Enums\Player_Gender.cs" />
     <Compile Include="Data\Structures\Enums\Player_Race.cs" />
+    <Compile Include="Data\Structures\Enums\Player_Relation.cs" />
     <Compile Include="Data\Structures\Levels.cs" />
     <Compile Include="Data\Structures\Player.cs" />
     <Compile Include="Data\Structures\Stats.cs" />
     <Compile Include="Data\Structures\Templates\Class_Template.cs" />
     <Compile Include="Data\Structures\Templates\Race_Template.cs" />
     <Compile Include="Data\Structures\Templates\Skill_Template.cs" />
+    <Compile Include="Data\Structures\UID.cs" />
+    <Compile Include="Data\Structures\UidFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Utils.cs" />

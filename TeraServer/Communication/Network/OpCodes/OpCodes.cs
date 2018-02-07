@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using TeraServer.Communication.Network.OpCodes.Client;
-using TeraServer.Communication.Network.OpCodes.Serve;
 using TeraServer.Communication.Network.OpCodes.Server;
 
 namespace TeraServer.Communication.Network.OpCodes
@@ -150,6 +149,11 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_SKILL_LEARN_LIST), unchecked ((short)0xEDE3));        
             ServerTypes.Add(typeof(S_SKILL_LEARN_RESULT), unchecked ((short)0x8835));        
             ServerTypes.Add(typeof(S_SHOW_PCBANG_ICON), unchecked ((short)0xB5CF));        
+            ServerTypes.Add(typeof(S_ACTION_STAGE), unchecked ((short)0xDE1F));        
+            ServerTypes.Add(typeof(S_ACTION_END), unchecked ((short)0x9D15));        
+            ServerTypes.Add(typeof(S_ABNORMALITY_BEGIN), unchecked ((short)0x7028));        
+            ServerTypes.Add(typeof(S_SPAWN_USER), unchecked ((short)0x827E));        
+            ServerTypes.Add(typeof(S_DESPAWN_USER), unchecked ((short)0xAC5B));        
             
             #endregion
         }

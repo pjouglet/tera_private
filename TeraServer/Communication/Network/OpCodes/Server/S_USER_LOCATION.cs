@@ -20,6 +20,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         public S_USER_LOCATION(Player player, float x, float y, float z, float tx, float ty, float tz, short heading,
             int type, int speed)
         {
+            this._player = player;
             this.x = x;
             this.y = y;
             this.z = z;

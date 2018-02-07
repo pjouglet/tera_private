@@ -16,7 +16,7 @@ namespace TeraServer.Communication.Network.OpCodes
 
         protected void writeWorldId(BinaryWriter writer, Player player)
         {
-            WriteLong(writer, 1);//todo : change with eid
+            WriteLong(writer, player.UID);//todo : change with eid
         }
         
         protected void WriteSpawnId(BinaryWriter writer, Player player, bool login)

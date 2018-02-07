@@ -64,8 +64,8 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 WriteInt32(writer, (int)player.race);
                 WriteInt32(writer, (int)player.classId);
                 WriteInt32(writer, player.level);
-                WriteInt32(writer, 6);//hp
-                WriteInt32(writer, 1231);//mp
+                WriteInt32(writer, player.playerStats.hp);//hp
+                WriteInt32(writer, player.playerStats.mp);//mp
                 WriteInt32(writer, player.worldMapWorldId);
                 WriteInt32(writer, player.worldMapGuardId);
                 WriteInt32(writer, player.worldMapSectionId);

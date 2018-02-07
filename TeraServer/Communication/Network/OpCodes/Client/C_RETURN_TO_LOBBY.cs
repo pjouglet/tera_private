@@ -14,7 +14,12 @@ namespace TeraServer.Communication.Network.OpCodes.Client
         {
             S_RETURN_TO_LOBBY sReturnToLobby = new S_RETURN_TO_LOBBY();
             sReturnToLobby.Send(this.Connection);
+            
+            S_DESPAWN_USER sDespawnUser = new S_DESPAWN_USER(this.Connection.player, 1);
+            this.Connection.broadcastToOther(sDespawnUser);
+            
             DAOManager.PlayerDao.savePlayer(this.Connection.player);
+            this.Connection.player.Release();
             this.Connection.player = null;
         }
     }

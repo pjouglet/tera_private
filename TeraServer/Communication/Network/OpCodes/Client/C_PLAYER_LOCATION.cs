@@ -35,6 +35,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             this.Connection.player.posY = y;
             this.Connection.player.posZ = z;
             this.Connection.player.heading = heading;
+            
+            S_USER_LOCATION sUserLocation = new S_USER_LOCATION(this.Connection.player, x, y, z, tx, ty, tz, heading, type, speed);
+            Connection.broadcast(sUserLocation);
         }
     }
 }

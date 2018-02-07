@@ -1,4 +1,7 @@
-﻿using TeraServer.Communication.Network.OpCodes.Server;
+﻿using System;
+using TeraServer.Communication.Network.OpCodes.Server;
+using TeraServer.Data.Structures;
+using TeraServer.Data.Structures.Enums;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
 {
@@ -38,6 +41,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_SPAWN_ME sSpawnMe = new S_SPAWN_ME(this.Connection.player);
             sSpawnMe.Send(this.Connection);
             
+            S_SPAWN_USER spawnUser = new S_SPAWN_USER(this.Connection.player);
+            this.Connection.broadcastToOther(spawnUser);
+            
             S_ATTENDANCE_EVENT_REWARD_COUNT sAttendanceEventRewardCount = new S_ATTENDANCE_EVENT_REWARD_COUNT();
             sAttendanceEventRewardCount.Send(this.Connection);
             
@@ -65,16 +71,26 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             if (this.Connection.player.GM == 1)
             {
                 S_ADMIN_GM_SKILL sAdminGmSkill = new S_ADMIN_GM_SKILL(0, 0);
-                sAdminGmSkill.Send(this.Connection);
+                Connection.broadcast(sAdminGmSkill);
                 
-                S_CHANGE_RELATION sChangeRelation = new S_CHANGE_RELATION(this.Connection.player, 26);
-                sChangeRelation.Send(this.Connection);
+                S_CHANGE_RELATION sChangeRelation = new S_CHANGE_RELATION(this.Connection.player, (int) Player_Relation.GM);
+                Connection.broadcast(sChangeRelation);
             }
 
             if (this.Connection.Account.accountPackages.Contains(1000))
             {
                 S_SHOW_PCBANG_ICON sShowPcbangIcon= new S_SHOW_PCBANG_ICON(1, this.Connection.player);
-                sShowPcbangIcon.Send(this.Connection);
+                Connection.broadcast(sShowPcbangIcon);
+            }
+            
+            //spawn other char
+            foreach(Network.Connection con in Network.Connection.Connections)
+            {
+                if (con != this.Connection && con.player != null)
+                {
+                    S_SPAWN_USER other_user = new S_SPAWN_USER(con.player);
+                    other_user.Send(this.Connection);
+                }
             }
             
         }

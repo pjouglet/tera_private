@@ -1,5 +1,4 @@
 ﻿using System;
-using TeraServer.Communication.Network.OpCodes.Serve;
 using TeraServer.Communication.Network.OpCodes.Server;
 using TeraServer.Data.DAO;
 
