@@ -1,5 +1,6 @@
 ﻿using System;
 using TeraServer.Communication.Network.OpCodes.Server;
+using TeraServer.Configuration;
 using TeraServer.Data.DAO;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
@@ -135,7 +136,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             
             S_FATIGABILITY_POINT sFatigabilityPoint = new S_FATIGABILITY_POINT();
             sFatigabilityPoint.Send(this.Connection);
-            
+
             S_LOAD_EP_INFO sLoadEpInfo = new S_LOAD_EP_INFO();
             sLoadEpInfo.Send(this.Connection);
         }

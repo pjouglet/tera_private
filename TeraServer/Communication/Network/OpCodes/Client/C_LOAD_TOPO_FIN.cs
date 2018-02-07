@@ -35,6 +35,9 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_LOAD_CLIENT_USER_SETTING sLoadClientUserSetting = new S_LOAD_CLIENT_USER_SETTING(this.Connection.player);
             sLoadClientUserSetting.Send(this.Connection);
             
+            S_SYSTEM_MESSAGE sSystemMessage = new S_SYSTEM_MESSAGE("@888");
+            sSystemMessage.Send(this.Connection);
+            
             S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF sEpSystemDailyEventExpOnOff = new S_EP_SYSTEM_DAILY_EVENT_EXP_ON_OFF();
             sEpSystemDailyEventExpOnOff.Send(this.Connection);
             
@@ -92,7 +95,6 @@ namespace TeraServer.Communication.Network.OpCodes.Client
                     other_user.Send(this.Connection);
                 }
             }
-            
         }
     }
 }

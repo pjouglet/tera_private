@@ -154,6 +154,7 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_ABNORMALITY_BEGIN), unchecked ((short)0x7028));        
             ServerTypes.Add(typeof(S_SPAWN_USER), unchecked ((short)0x827E));        
             ServerTypes.Add(typeof(S_DESPAWN_USER), unchecked ((short)0xAC5B));        
+            ServerTypes.Add(typeof(S_SYSTEM_MESSAGE), unchecked ((short)0xCE3D));        
             
             #endregion
         }
