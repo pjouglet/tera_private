@@ -53,6 +53,7 @@
         public int infamy;
         public int edge;
         public float flightEnergy;
+        public int fatigability;
 
 
     }

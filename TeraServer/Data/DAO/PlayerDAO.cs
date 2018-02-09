@@ -361,6 +361,7 @@ namespace TeraServer.Data.DAO
                     player.playerStats.hp = (int)reader.GetValue(reader.GetOrdinal("hp"));
                     player.playerStats.mp = (int)reader.GetValue(reader.GetOrdinal("mp"));
                     player.playerStats.stamina = (int)reader.GetValue(reader.GetOrdinal("stamina"));
+                    player.playerStats.fatigability = (int) reader.GetValue(reader.GetOrdinal("fatigability"));
                         
                     Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(player.classId)];
                     
