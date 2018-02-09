@@ -78,7 +78,9 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_LOGIN_ARBITER.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_NPC_CONTACT.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_PLAYER_LOCATION.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_PONG.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REIGN_INFO.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_GAMESTAT_PING.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_GUILD_PERK_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_INGAMESTORE_PRODUCT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_REQUEST_VIP_SYSTEM_INFO.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_SIMPLE_TIP_REPEAT_CHECK.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SKILL_LEARN_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_SKILL_LEARN_REQUEST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_SOCIAL.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_START_SKILL.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_STR_EVALUATE_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_TRADE_BROKER_HIGHEST_ITEM_LEVEL.cs" />
@@ -118,6 +121,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_COMPLETED_MISSION_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CONFIRM_INVITE_CODE_BUTTON.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CREATE_USER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_CREATURE_CHANGE_HP.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_CURRENT_ELECTION_STATE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DAILY_QUEST_COMPLETE_COUNT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_DELETE_USER.cs" />
@@ -155,7 +159,10 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_ONGOING_LEVEL_EVENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PARCEL_READ_RECV_STATUS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PET_INCUBATOR_INFO_CHANGE.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_PING.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_CHANGE_ALL_PROF.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_CHANGE_MP.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_CHANGE_STAMINA.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_PLAYER_STAT_UPDATE.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_QA_SET_ADMIN_LEVEL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_REIGN_INFO.cs" />
@@ -172,6 +179,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LEARN_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LEARN_RESULT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SKILL_LIST.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_SOCIAL.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_ME.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_NPC.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_SPAWN_USER.cs" />

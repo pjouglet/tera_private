@@ -63,25 +63,43 @@ namespace TeraServer.Data.Structures
             base.Release();
         }
 
-        public void updateStats()
+        public void updateStats(Connection connection)
         {
             if (this.playerStats.hp < this.playerStats.maxHp)
+            {
+                long diff = 0;
                 if (this.playerStats.hp + 1000 > this.playerStats.maxHp)
-                    this.playerStats.hp = this.playerStats.maxHp;
+                    diff = this.playerStats.maxHp - this.playerStats.hp;
                 else
-                    this.playerStats.hp += 1000;
-            
+                    diff = 1000;
+                this.playerStats.hp = this.playerStats.hp + (int)diff;
+                S_CREATURE_CHANGE_HP sCreatureChangeHp = new S_CREATURE_CHANGE_HP(this, diff);
+                sCreatureChangeHp.Send(connection);
+            }
+
             if (this.playerStats.mp < this.playerStats.maxMp)
+            {
+                int diff = 0;
                 if (this.playerStats.mp + 500 > this.playerStats.maxMp)
-                    this.playerStats.mp = this.playerStats.maxMp;
+                    diff = this.playerStats.maxMp - this.playerStats.mp;
                 else
-                    this.playerStats.mp += 500;
-            
+                    diff = 500;
+                this.playerStats.mp = this.playerStats.mp + diff;
+                S_PLAYER_CHANGE_MP sPlayerChangeMp = new S_PLAYER_CHANGE_MP(this, diff);
+                sPlayerChangeMp.Send(connection);
+            }
+
+
             if (this.playerStats.stamina < this.playerStats.staminaMax)
+            {
                 if (this.playerStats.stamina + 100 > this.playerStats.staminaMax)
                     this.playerStats.stamina = this.playerStats.staminaMax;
                 else
                     this.playerStats.stamina += 100;
+                S_PLAYER_CHANGE_STAMINA sPlayerChangeStamina = new S_PLAYER_CHANGE_STAMINA(this);
+                sPlayerChangeStamina.Send(connection);
+            }
+                
             
         }
 
