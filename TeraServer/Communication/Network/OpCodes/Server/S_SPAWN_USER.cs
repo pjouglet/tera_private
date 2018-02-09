@@ -13,8 +13,10 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         }
         public override void Write(BinaryWriter writer)
         {
-            WriteInt32(writer, 0);
-            WriteInt16(writer, 1);
+            WriteInt16(writer, 0);//count icons
+            WriteInt16(writer, 0);//offset icons
+            
+            WriteInt16(writer, 1);//count accountbenefits
             
             short package = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
@@ -63,13 +65,12 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, 0);//pose
             WriteInt32(writer, this._player.title);
             WriteLong(writer, 0);
-            WriteInt32(writer, 0);
-            WriteInt32(writer, 0);//exarch
+            WriteByte(writer, 0);//exarch
             if(this._player.GM == 1)
                 WriteByte(writer, 1);
             else
                 WriteByte(writer, 0);
-            WriteByte(writer, 0);
+            WriteByte(writer, 0);//gm invisible
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
@@ -82,6 +83,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);
+            WriteInt32(writer, 0);//
             WriteInt32(writer, 0);//weapon enchant
             WriteByte(writer, 0);//newbie
             WriteByte(writer,0);//pk enabled

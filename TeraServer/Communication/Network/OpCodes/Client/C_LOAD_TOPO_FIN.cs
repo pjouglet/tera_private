@@ -74,7 +74,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             if (this.Connection.player.GM == 1)
             {
                 S_ADMIN_GM_SKILL sAdminGmSkill = new S_ADMIN_GM_SKILL(0, 0);
-                Connection.broadcast(sAdminGmSkill);
+                sAdminGmSkill.Send(this.Connection);
                 
                 S_CHANGE_RELATION sChangeRelation = new S_CHANGE_RELATION(this.Connection.player, (int) Player_Relation.GM);
                 Connection.broadcast(sChangeRelation);

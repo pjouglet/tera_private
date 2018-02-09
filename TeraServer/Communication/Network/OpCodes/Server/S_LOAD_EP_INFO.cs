@@ -6,13 +6,19 @@ namespace TeraServer.Communication.Network.OpCodes.Server
     {
         public override void Write(BinaryWriter writer)
         {
-            WriteInt16(writer, 1);
+            WriteLong(writer, 0);
+            WriteLong(writer, 0);
+            WriteLong(writer, 0);
+            WriteLong(writer, 0);
+            WriteLong(writer, 0);
+            //KTERA skills
+            /*WriteInt16(writer, 1);
             short unk = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
             WriteInt32(writer, 82);
             WriteInt32(writer, 213034);
             WriteInt32(writer, 0);
-            WriteInt32(writer, 92);
+            WriteInt32(writer, 77);//ktera skill level
             WriteInt32(writer, 1);
             WriteInt32(writer, 0);
             WriteInt32(writer, 17752);
@@ -24,7 +30,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt16(writer, (short) writer.BaseStream.Position);
             WriteInt16(writer, 0);
             WriteInt32(writer, 111000);
-            WriteInt32(writer, 1);
+            WriteInt32(writer, 1);*/
             
         }
     }

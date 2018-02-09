@@ -27,7 +27,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             sUpdateContentsOnOff2.Send(this.Connection);
             S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff3 = new S_UPDATE_CONTENTS_ON_OFF(4);
             sUpdateContentsOnOff3.Send(this.Connection);
-            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff4 = new S_UPDATE_CONTENTS_ON_OFF(8, 1);
+            S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff4 = new S_UPDATE_CONTENTS_ON_OFF(8);//vip system
             sUpdateContentsOnOff4.Send(this.Connection);
             S_UPDATE_CONTENTS_ON_OFF sUpdateContentsOnOff5 = new S_UPDATE_CONTENTS_ON_OFF(9, 1);
             sUpdateContentsOnOff5.Send(this.Connection);
