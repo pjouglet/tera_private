@@ -57,6 +57,9 @@ namespace TeraServer.Communication.Network.OpCodes
             ClientTypes.Add(unchecked ((short)0xE9C7), typeof(C_SKILL_LEARN_LIST));    
             ClientTypes.Add(unchecked ((short)0x53AF), typeof(C_SKILL_LEARN_REQUEST));    
             ClientTypes.Add(unchecked ((short)0xA9DC), typeof(C_START_SKILL));    
+            ClientTypes.Add(unchecked ((short)0xE66B), typeof(C_SOCIAL));    
+            ClientTypes.Add(unchecked ((short)0xB9B6), typeof(C_REQUEST_GAMESTAT_PING));    
+            ClientTypes.Add(unchecked ((short)0XBAE4), typeof(C_PONG));    
             
                     
             #endregion
@@ -155,6 +158,11 @@ namespace TeraServer.Communication.Network.OpCodes
             ServerTypes.Add(typeof(S_SPAWN_USER), unchecked ((short)0x827E));        
             ServerTypes.Add(typeof(S_DESPAWN_USER), unchecked ((short)0xAC5B));        
             ServerTypes.Add(typeof(S_SYSTEM_MESSAGE), unchecked ((short)0xCE3D));        
+            ServerTypes.Add(typeof(S_PLAYER_CHANGE_MP), unchecked ((short)0x85BA));        
+            ServerTypes.Add(typeof(S_CREATURE_CHANGE_HP), unchecked ((short)0x4F5C));        
+            ServerTypes.Add(typeof(S_PLAYER_CHANGE_STAMINA), unchecked ((short)0x6CB2));        
+            ServerTypes.Add(typeof(S_SOCIAL), unchecked ((short)0x9062));        
+            ServerTypes.Add(typeof(S_PING), unchecked ((short)0xD9B5));        
             
             #endregion
         }
