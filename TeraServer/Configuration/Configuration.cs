@@ -6,6 +6,19 @@ namespace TeraServer.Configuration
     public class Config
     {
         public static bool DEBUG = false;
+        private static int fatigability_refresh = 0;
+        private static int fatigability_update = 0;
+        
+        public static int FatigabilityUpdate
+        {
+            get => getFatigabilityUpdate();
+        }
+
+        public static int FatigabilityRefresh
+        {
+            get => getFatigabilityRefresh();
+        }
+
         public static string getDatabaseHost()
         {
             string host = null;
@@ -166,6 +179,46 @@ namespace TeraServer.Configuration
                 Console.WriteLine("Unable to get the maximum level !");
             }
             return level;
+        }
+        
+        public static int getFatigabilityRefresh()
+        {
+            if (Config.fatigability_refresh != 0)
+                return Config.fatigability_refresh;
+            
+            try
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(@"config/server.xml");
+                XmlNode node = document.SelectSingleNode("server/fatigability_refresh");
+                if (node != null)
+                    Config.fatigability_refresh = Convert.ToInt32(node.InnerText);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Unable to get the maximum level !");
+            }
+            return Config.fatigability_refresh;
+        }
+        
+        public static int getFatigabilityUpdate()
+        {
+            if (Config.fatigability_update != 0)
+                return Config.fatigability_update;
+            
+            try
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(@"config/server.xml");
+                XmlNode node = document.SelectSingleNode("server/fatigability_update");
+                if (node != null)
+                    Config.fatigability_update = Convert.ToInt32(node.InnerText);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Unable to get the maximum level !");
+            }
+            return Config.fatigability_update;
         }
     }
 }

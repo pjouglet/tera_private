@@ -38,17 +38,17 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             else
                 WriteByte(writer, 1);//alive
             
-            WriteInt32(writer, 0);
+            WriteInt32(writer, 0);//status
             WriteInt32(writer, this._player.playerStats.walkSpeed);
             WriteInt32(writer, this._player.playerStats.movementSpeed);
             WriteBytes(writer, _player.details3);
             WriteByte(writer, 1);
             WriteByte(writer, 0);
             WriteInt16(writer, (short)_player.level);
-            WriteInt16(writer, 100);//energy
+            WriteInt16(writer, (short) _player.playerStats.gatheringEnergy);//energy
             WriteInt16(writer, 0);
-            WriteInt16(writer, 100);//plant
-            WriteInt16(writer, 100);//mining
+            WriteInt16(writer, (short) _player.playerStats.gatheringHerb);//plant
+            WriteInt16(writer, (short) _player.playerStats.gatheringMineral);//mining
             WriteInt16(writer, 1);
             WriteInt32(writer, 0);
             WriteInt32(writer, 0);//playerKills

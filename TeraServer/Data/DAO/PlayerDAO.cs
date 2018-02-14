@@ -5,6 +5,7 @@ using System.Threading;
 using MySql.Data.MySqlClient;
 using TeraServer.Communication.Network;
 using TeraServer.Communication.Network.OpCodes.Server;
+using TeraServer.Configuration;
 using TeraServer.Data.Structures;
 using TeraServer.Data.Structures.Enums;
 using TeraServer.Data.Structures.Templates;
@@ -32,6 +33,17 @@ namespace TeraServer.Data.DAO
                             S_PLAYER_STAT_UPDATE sPlayerStatUpdate = new S_PLAYER_STAT_UPDATE(player);
                             sPlayerStatUpdate.Send(Communication.Network.Connection.Connections[i]);
                         }
+                        //update fatigability
+                        /*if (Utils.Funcs.GetRoundedUtc() - player.playerStats.lastUpdateFatigability > Config.FatigabilityRefresh && player.playerStats.fatigability < 4000)
+                        {
+                            if (player.playerStats.fatigability + Config.FatigabilityUpdate > 4000)
+                                player.playerStats.fatigability = 4000;
+                            else
+                                player.playerStats.fatigability += Config.FatigabilityUpdate;
+                            player.playerStats.lastUpdateFatigability = Utils.Funcs.GetRoundedUtc();
+                            S_FATIGABILITY_POINT sFatigabilityPoint = new S_FATIGABILITY_POINT(player);
+                            sFatigabilityPoint.Send(Communication.Network.Connection.Connections[i]);
+                        }*/
                     }
                 }
                 Thread.Sleep(3000);
@@ -362,6 +374,9 @@ namespace TeraServer.Data.DAO
                     player.playerStats.mp = (int)reader.GetValue(reader.GetOrdinal("mp"));
                     player.playerStats.stamina = (int)reader.GetValue(reader.GetOrdinal("stamina"));
                     player.playerStats.fatigability = (int) reader.GetValue(reader.GetOrdinal("fatigability"));
+                    player.playerStats.gatheringMineral = (int) reader.GetValue(reader.GetOrdinal("gatheringMineral"));
+                    player.playerStats.gatheringHerb = (int) reader.GetValue(reader.GetOrdinal("gatheringHerb"));
+                    player.playerStats.gatheringEnergy = (int) reader.GetValue(reader.GetOrdinal("gatheringEnergy"));
                         
                     Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(player.classId)];
                     
@@ -387,11 +402,15 @@ namespace TeraServer.Data.DAO
 
         private void savePlayerStats(Player player)
         {
-            string SQL = "UPDATE `player_stats` SET `hp` = ?hp, `mp` = ?mp, `stamina` = ?stamina WHERE `playerid` = ?id";
+            string SQL = "UPDATE `player_stats` SET `hp` = ?hp, `mp` = ?mp, `stamina` = ?stamina, `fatigability` = ?fatigability, `gatheringMineral` = ?mineral, `gatheringHerb` = ?herb, `gatheringEnergy` = ?energy  WHERE `playerid` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?hp", player.playerStats.hp);
             command.Parameters.AddWithValue("?mp", player.playerStats.mp);
             command.Parameters.AddWithValue("?stamina", player.playerStats.stamina);
+            command.Parameters.AddWithValue("?fatigability", player.playerStats.fatigability);
+            command.Parameters.AddWithValue("?mineral", player.playerStats.gatheringMineral);
+            command.Parameters.AddWithValue("?herb", player.playerStats.gatheringHerb);
+            command.Parameters.AddWithValue("?energy", player.playerStats.gatheringEnergy);
             command.Parameters.AddWithValue("?id", player.playerId);
 
             try
@@ -403,6 +422,7 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to save player stats "+ e.Message);
                 throw;
             }
+
         }
 
         private void loadPlayerSkills(Player player)

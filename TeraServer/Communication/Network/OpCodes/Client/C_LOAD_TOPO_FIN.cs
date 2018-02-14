@@ -53,7 +53,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_ACCOUNT_BENEFIT_LIST sAccountBenefitList = new S_ACCOUNT_BENEFIT_LIST(this.Connection.Account);
             sAccountBenefitList.Send(this.Connection);
             
-            S_PLAYER_CHANGE_ALL_PROF sPlayerChangeAllProf = new S_PLAYER_CHANGE_ALL_PROF();
+            S_PLAYER_CHANGE_ALL_PROF sPlayerChangeAllProf = new S_PLAYER_CHANGE_ALL_PROF(this.Connection.player);
             sPlayerChangeAllProf.Send(this.Connection);
             
             S_PARCEL_READ_RECV_STATUS sParcelReadRecvStatus = new S_PARCEL_READ_RECV_STATUS();

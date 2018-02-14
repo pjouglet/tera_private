@@ -15,6 +15,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
                 if (this.Connection.Account.Players[i].playerId == id)
                 {
                     this.Connection.player = this.Connection.Account.Players[i];
+                    this.Connection.player.playerStats.lastUpdateFatigability = Utils.Funcs.GetRoundedUtc();
                     break;
                 }
             }
@@ -134,7 +135,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_COMPLETED_MISSION_INFO sCompletedMissionInfo2 = new S_COMPLETED_MISSION_INFO();
             sCompletedMissionInfo2.Send(this.Connection);
             
-            S_FATIGABILITY_POINT sFatigabilityPoint = new S_FATIGABILITY_POINT();
+            S_FATIGABILITY_POINT sFatigabilityPoint = new S_FATIGABILITY_POINT(this.Connection.player);
             sFatigabilityPoint.Send(this.Connection);
 
             S_LOAD_EP_INFO sLoadEpInfo = new S_LOAD_EP_INFO();

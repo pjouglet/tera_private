@@ -54,6 +54,13 @@
         public int edge;
         public float flightEnergy;
         public int fatigability;
+        public int lastUpdateFatigability;
+        public int gatheringMineral;
+        public int gatheringHerb;
+        public int gatheringEnergy;
+        public int bonusMineral;
+        public int bonusHerb;
+        public int bonusEnergy;
 
 
     }
