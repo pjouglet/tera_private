@@ -77,6 +77,23 @@ namespace TeraServer.Communication
         public void StopServer()
         {
             this.TcpServer.ShutdownServer();
+            this.SaveAllPlayer();
+        }
+
+        private void SaveAllPlayer()
+        {
+            for (int i = 0; i < Connection.Connections.Count; i++)
+            {
+                try
+                {
+                    if(Connection.Connections[i].player != null)
+                        DAOManager.PlayerDao.savePlayer(Connection.Connections[i].player);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("SaveAllPlayer Error : " + ex.Message);
+                }
+            }
         }
     }
 }
