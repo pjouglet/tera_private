@@ -12,6 +12,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
         private float ty;
         private float tz;
         private short heading;
+        private short angle;
         private int type;
         private int speed;
         public override void Read()
@@ -20,7 +21,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             this.y = ReadF();
             this.z = ReadF();
             this.heading = (short)ReadH();
-            ReadH();
+            this.angle = (short)ReadH();
             this.tx = ReadF();
             this.ty = ReadF();
             this.tz = ReadF();
@@ -36,7 +37,7 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             this.Connection.player.posZ = z;
             this.Connection.player.heading = heading;
             
-            S_USER_LOCATION sUserLocation = new S_USER_LOCATION(this.Connection.player, x, y, z, tx, ty, tz, heading, type, speed);
+            S_USER_LOCATION sUserLocation = new S_USER_LOCATION(this.Connection.player, x, y, z, tx, ty, tz, heading, type, speed, angle);
             Connection.broadcast(sUserLocation);
         }
     }

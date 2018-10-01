@@ -69,7 +69,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteInt32(writer, _player.playerStats.infamy);
             WriteInt32(writer, 110);//itemlevelInventory
             WriteInt32(writer, 100);//itemlevel
-            WriteInt32(writer, _player.playerStats.edge);//itemlevel
+            WriteInt32(writer, _player.playerStats.edge);
             WriteInt16(writer, 0);
             WriteInt16(writer, 0);
             WriteInt32(writer, 8000);

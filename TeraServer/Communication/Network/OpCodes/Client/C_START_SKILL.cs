@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using TeraServer.Communication.Network.OpCodes.Server;
 
 namespace TeraServer.Communication.Network.OpCodes.Client
 {
@@ -32,13 +34,19 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             this.moving = ReadB(1)[0];
             this.continuePrevious = ReadB(1)[0];
             this.target = ReadD();
-            
-            Console.WriteLine("Skill {0} to target {1}", skill, target);
         }
 
         public override void Process()
         {
+            S_ACTION_STAGE sActionStage = new S_ACTION_STAGE(this.Connection.player, x, y, z, heading, toX, toY, toZ, skill, target);
+            sActionStage.Send(this.Connection);
+            if (this.skill == 200003)
+            {
+                S_ABNORMALITY_BEGIN sAbnormalityBegin = new S_ABNORMALITY_BEGIN(this.Connection.player, 903, 30000, 0);
+                sAbnormalityBegin.Send(this.Connection);
+            }
             
+            this.Connection.player.startSkill(skill, this.Connection);
         }
     }
 }

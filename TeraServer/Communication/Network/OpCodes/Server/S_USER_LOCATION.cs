@@ -14,11 +14,12 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         private float ty;
         private float tz;
         private short heading;
+        private short angle;
         private int type;
         private short speed;
 
         public S_USER_LOCATION(Player player, float x, float y, float z, float tx, float ty, float tz, short heading,
-            int type, int speed)
+            int type, int speed, int angle)
         {
             this._player = player;
             this.x = x;
@@ -30,6 +31,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             this.heading = heading;
             this.type = type;
             this.speed = (short) speed;
+            this.angle = (short) angle;
         }
         
         public override void Write(BinaryWriter writer)
@@ -40,7 +42,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
             WriteFloat(writer, this.y);
             WriteFloat(writer, this.z);
             WriteInt16(writer, this.heading);
-            WriteInt16(writer, 0);//unk
+            WriteInt16(writer, this.angle);
             WriteInt16(writer, 110);//todo : speed with stat update
             WriteFloat(writer, this.tx);
             WriteFloat(writer, this.ty);

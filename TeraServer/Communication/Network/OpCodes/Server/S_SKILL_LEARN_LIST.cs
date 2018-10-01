@@ -17,13 +17,13 @@ namespace TeraServer.Communication.Network.OpCodes.Server
         public override void Write(BinaryWriter writer)
         {
             Class_Template template = Class_Template.ClassTemplates[Convert.ToInt32(_player.classId)];
-            WriteInt16(writer, (short) template.SkillList.Count);
+            WriteInt16(writer, (short) template.SkillLearnList.Count);
             short next = (short) writer.BaseStream.Position;
             WriteInt16(writer, 0);
 
-            for (int i = 0; i < template.SkillList.Count; i++)
+            for (int i = 0; i < template.SkillLearnList.Count; i++)
             {
-                short count = (short)(template.SkillList[i].preActive.Count + template.SkillList[i].prePassive.Count + template.SkillList[i].preSkill.Count);
+                short count = (short)(template.SkillLearnList[i].preActive.Count + template.SkillLearnList[i].prePassive.Count + template.SkillLearnList[i].preSkill.Count);
                 
                 writetoPos(writer, next, (short) writer.BaseStream.Position);
                 WriteInt16(writer, (short) writer.BaseStream.Position);
@@ -33,14 +33,14 @@ namespace TeraServer.Communication.Network.OpCodes.Server
                 short countPos = (short) writer.BaseStream.Position;
                 WriteInt16(writer, 0);
                 WriteInt32(writer, 0);
-                WriteInt32(writer, template.SkillList[i].id);
-                if(template.SkillList[i].type == 1)
+                WriteInt32(writer, template.SkillLearnList[i].id);
+                if(template.SkillLearnList[i].type == 1)
                     WriteByte(writer, 1);
-                else if(template.SkillList[i].type == 0)
+                else if(template.SkillLearnList[i].type == 0)
                     WriteByte(writer, 0);
-                WriteInt32(writer, template.SkillList[i].cost);
-                WriteInt32(writer, template.SkillList[i].level);
-                if(template.SkillList.Contains(template.SkillLearnList[i]))
+                WriteInt32(writer, template.SkillLearnList[i].cost);
+                WriteInt32(writer, template.SkillLearnList[i].level);
+                if(this._player.learnedSkills.Contains(template.SkillLearnList[i]))
                     WriteByte(writer, 1);
                 else
                     WriteByte(writer, 0);

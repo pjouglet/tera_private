@@ -6,6 +6,7 @@ namespace TeraServer.Communication.Network.OpCodes.Server
     {
         private int content;
         private byte _off;
+        
         public S_UPDATE_CONTENTS_ON_OFF(int content, byte off = 0)
         {
             this.content = content;
