@@ -362,7 +362,7 @@ namespace TeraServer.Data.DAO
 
         private void loadPlayerStats(Player player)
         {
-                string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
+            string SQL = "SELECT * FROM player_stats WHERE `playerid` = ?id";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", player.playerId);
             MySqlDataReader reader = command.ExecuteReader();
@@ -427,7 +427,7 @@ namespace TeraServer.Data.DAO
 
         private void loadPlayerSkills(Player player)
         {
-            string SQL = "SELECT `skills` FROM `players_skills` WHERE `playerid` = ?id ORDER BY id ASC";
+            string SQL = "SELECT `skills` FROM `players_skills` WHERE `playerid` = ?id ORDER BY playerid ASC";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", player.playerId);
             MySqlDataReader reader = command.ExecuteReader();

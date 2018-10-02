@@ -13,10 +13,8 @@ namespace TeraServer.Communication.Network.OpCodes.Client
 
         public override void Process()
         {
-            Config.DEBUG = true;
             S_SKILL_LEARN_LIST sSkillLearnList = new S_SKILL_LEARN_LIST(this.Connection.player);
             sSkillLearnList.Send(this.Connection);
-            Config.DEBUG = false;
         }
     }
 }
