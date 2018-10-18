@@ -47,6 +47,7 @@ namespace TeraServer.Data.Structures
         public List<bookmark> AdminBookmarks = new List<bookmark>();
         public Stats playerStats;
         public List<Skill_Template> learnedSkills = new List<Skill_Template>();
+        public List<NPCGuilds> npcGuild = new List<NPCGuilds>();
         
         
 

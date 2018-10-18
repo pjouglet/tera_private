@@ -129,8 +129,8 @@ namespace TeraServer.Communication.Network.OpCodes.Client
             S_SEND_USER_PLAY_TIME sSendUserPlayTime = new S_SEND_USER_PLAY_TIME(this.Connection.player);
             sSendUserPlayTime.Send(this.Connection);
             
-            S_UPDATE_NPCGUILD sUpdateNpcguild = new S_UPDATE_NPCGUILD(this.Connection.player);
-            sUpdateNpcguild.Send(this.Connection);
+            /*S_UPDATE_NPCGUILD sUpdateNpcguild = new S_UPDATE_NPCGUILD(this.Connection.player);
+            sUpdateNpcguild.Send(this.Connection);*/
             
             S_COMPLETED_MISSION_INFO sCompletedMissionInfo2 = new S_COMPLETED_MISSION_INFO();
             sCompletedMissionInfo2.Send(this.Connection);

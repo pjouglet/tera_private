@@ -76,6 +76,7 @@
     <Compile Include="Communication\Network\OpCodes\Client\C_HARDWARE_INFO.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOAD_TOPO_FIN.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_LOGIN_ARBITER.cs" />
+    <Compile Include="Communication\Network\OpCodes\Client\C_NPCGUILD_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_NPC_CONTACT.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_PLAYER_LOCATION.cs" />
     <Compile Include="Communication\Network\OpCodes\Client\C_PONG.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Communication\Network\OpCodes\Server\S_MASSTIGE_STATUS.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_MOVE_DISTANCE_DELTA.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_MY_DESCRIPTION.cs" />
+    <Compile Include="Communication\Network\OpCodes\Server\S_NPCGUILD_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_NPC_MENU_SELECT.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ONGOING_HUNTING_EVENT_LIST.cs" />
     <Compile Include="Communication\Network\OpCodes\Server\S_ONGOING_LEVEL_EVENT_LIST.cs" />
@@ -215,7 +217,9 @@
     <Compile Include="Data\Structures\Enums\Player_Gender.cs" />
     <Compile Include="Data\Structures\Enums\Player_Race.cs" />
     <Compile Include="Data\Structures\Enums\Player_Relation.cs" />
+    <Compile Include="Data\Structures\Enums\Player_Reputation.cs" />
     <Compile Include="Data\Structures\Levels.cs" />
+    <Compile Include="Data\Structures\NPCGuilds.cs" />
     <Compile Include="Data\Structures\Player.cs" />
     <Compile Include="Data\Structures\Stats.cs" />
     <Compile Include="Data\Structures\Templates\Class_Template.cs" />

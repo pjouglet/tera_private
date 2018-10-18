@@ -38,6 +38,10 @@ namespace TeraServer.Communication
                 Achievements.LoadAchievementsFromFile();
                 Console.WriteLine("Loaded " + Achievements.achievementList.Count + " achievements");
                 
+                Console.WriteLine("Loading NPCGuilds");
+                NPCGuilds.LoadNPCGuildFromFile();
+                Console.WriteLine("Loaded " + NPCGuilds.NpcGuildsList.Count + " NPCGuilds");
+                
                 Console.WriteLine("Loading OpCodes...");
                 OpCodes.Init();
                 Console.WriteLine("Loaded "+ (OpCodes.ClientTypes.Count + OpCodes.ServerTypes.Count)+ " OpCodes" );

@@ -116,6 +116,7 @@ namespace TeraServer.Data.DAO
                     player.accountSettings = Funcs.HexToBytes(reader.GetValue(reader.GetOrdinal("accountSettings")).ToString());
                     player.Achievements = new Achievements();
                     player.playerStats = new Stats();
+                    loadPlayerReputation(player, reader.GetValue(reader.GetOrdinal("reputation")).ToString());
                     players.Add(player);
 
                 }
@@ -125,6 +126,7 @@ namespace TeraServer.Data.DAO
             {
                 loadPlayerStats(players[i]);
                 loadPlayerSkills(players[i]);
+                
             }
             return players;
         }
@@ -153,8 +155,16 @@ namespace TeraServer.Data.DAO
         public bool SaveNewPlayer(Player player, Connection connection)
         {
             #region save_player
+            
+            string reputation = String.Empty;
+
+            foreach (NPCGuilds guild in NPCGuilds.NpcGuildsList)
+            {
+                reputation += guild.faction + ";" + guild.reputation + ";" + guild.credits + ";" +
+                              (int) guild.PlayerReputation + "|";
+            }
             string SQL =
-                "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `level`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`) VALUES(?id, ?name, ?race, ?gender, ?level, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition)";
+                "INSERT INTO `players`(`accountid`, `name`, `race`, `gender`, `level`, `class`, `details1`, `details2`, `details3`, `creationTime`, `lobbyPosition`, `reputation`) VALUES(?id, ?name, ?race, ?gender, ?level, ?class, ?details1, ?details2, ?details3, ?creationTime, ?lobbyPosition, ?reputation)";
             MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
             command.Parameters.AddWithValue("?id", connection.Account.AccountID);
             command.Parameters.AddWithValue("?name", player.name);
@@ -167,6 +177,7 @@ namespace TeraServer.Data.DAO
             command.Parameters.AddWithValue("?details3", Funcs.BytesToHex(player.details3));
             command.Parameters.AddWithValue("?creationTime", Utils.Funcs.GetRoundedUtc());
             command.Parameters.AddWithValue("?lobbyPosition", connection.Account.Players.Count);
+            command.Parameters.AddWithValue("?reputation", reputation);
             try
             {
                 command.ExecuteNonQuery();
@@ -186,6 +197,7 @@ namespace TeraServer.Data.DAO
                 Console.WriteLine("Error when trying to save new character " + ex.Message);
             }
             #endregion
+            
             #region save_stats
             SQL = "INSERT INTO `player_stats`(`playerid`, `hp`, `mp`, `stamina`) VALUES(?id, ?hp, ?mp, ?stamina)";
             command = new MySqlCommand(SQL, this._mySqlConnection);
@@ -227,7 +239,7 @@ namespace TeraServer.Data.DAO
             }
        
             #endregion
-            
+
             return false;
 
         }
@@ -293,7 +305,8 @@ namespace TeraServer.Data.DAO
             }
             savePlayerStats(player);
             savePlayerSkills(player);
-            
+            savePlayerReputation(player);
+
         }
 
         public void savePlayerAccountSettings(Player player, byte[] data)
@@ -465,6 +478,49 @@ namespace TeraServer.Data.DAO
             {
                 Console.WriteLine("Error when trying to save skills " + ex.Message);
             }
+        }
+
+        public void savePlayerReputation(Player player)
+        {
+            try
+            {
+                string SQL = "UPDATE `players` SET `reputation` = ?reputation WHERE `playerid` = ?id";
+                string reputation = String.Empty;
+
+                foreach (NPCGuilds guild in NPCGuilds.NpcGuildsList)
+                {
+                    reputation += guild.faction + ";" + guild.reputation + ";" + guild.credits + ";" +
+                                  (int) guild.PlayerReputation + "|";
+                }
+            
+                MySqlCommand command = new MySqlCommand(SQL, this._mySqlConnection);
+                command.Parameters.AddWithValue("?reputation", reputation);
+                command.Parameters.AddWithValue("?id", player.playerId);
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when trying to save NPCGuilds " + ex.Message);
+            }
+        }
+
+        public void loadPlayerReputation(Player player, string reputation)
+        {
+            string[] data = reputation.Split('|');
+            for (int i = 0; i < data.Length - 1; i++)
+            {
+                string[] values = data[i].Split(';');
+                if (NPCGuilds.NpcGuildsList.Exists(x => x.faction == int.Parse(values[0])))
+                {
+                    NPCGuilds npcGuilds = NPCGuilds.NpcGuildsList.Find(x => x.faction == int.Parse(values[0]));
+                    npcGuilds.reputation = int.Parse(values[1]);
+                    npcGuilds.credits = int.Parse(values[2]);
+                    npcGuilds.PlayerReputation = (Player_Reputation) int.Parse(values[3]);
+                    player.npcGuild.Add(npcGuilds);
+                }
+            }
+            
+            
         }
     }
 }

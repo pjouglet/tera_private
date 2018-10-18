@@ -1,24 +1,36 @@
 ﻿using System.IO;
 using TeraServer.Data.Structures;
+using TeraServer.Data.Structures.Enums;
 
 namespace TeraServer.Communication.Network.OpCodes.Server
 {
     public class S_UPDATE_NPCGUILD : AServerPacket
     {
         private Player _player;
-        public S_UPDATE_NPCGUILD(Player player)
+        private int _region;
+        private int _faction;
+        private int _reputation;
+        private int _credits;
+        private Player_Reputation _playerReputation;
+        
+        public S_UPDATE_NPCGUILD(Player player, int region, int faction, int reputation, int credits, Player_Reputation playerReputation)
         {
             this._player = player;
+            this._region = region;
+            this._faction = faction;
+            this._reputation = reputation;
+            this._credits = credits;
+            this._playerReputation = playerReputation;
         }
         public override void Write(BinaryWriter writer)
         {
-            WriteInt32(writer, this._player.playerId);
-            WriteInt32(writer, 0);
-            WriteInt32(writer, 1);
-            WriteInt32(writer, 9);
-            WriteInt32(writer, 610);
-            WriteInt32(writer, 6);
-            WriteLong(writer, 0);
+            writeWorldId(writer, this._player);
+            WriteInt32(writer, 2);//unk
+            WriteInt32(writer, this._region);
+            WriteInt32(writer, this._faction);
+            WriteInt32(writer, (int) this._playerReputation);
+            WriteInt32(writer, this._reputation);
+            WriteInt32(writer, this._credits);
         }
     }
 }
